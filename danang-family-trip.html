@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>다낭 가족여행 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
+
+:root {
+  --sea: #0891b2;
+  --sea2: #06b6d4;
+  --sand: #f59e0b;
+  --sand2: #fbbf24;
+  --night: #0f172a;
+  --night2: #1e293b;
+  --night3: #334155;
+  --mist: #f0f9ff;
+  --text: #0f172a;
+  --text2: #475569;
+  --text3: #94a3b8;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --r: 14px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: #f8fafc;
+  color: var(--text);
+  min-height: 100dvh;
+  overscroll-behavior: none;
+}
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(160deg, #0c1a2e 0%, #0e3a5e 45%, #0891b2 100%);
+  padding: 48px 20px 36px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 60px;
+  background: #f8fafc;
+  clip-path: ellipse(60% 100% at 50% 100%);
+}
+.hero-stars {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    radial-gradient(1px 1px at 15% 20%, rgba(255,255,255,.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 35% 45%, rgba(255,255,255,.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 60% 15%, rgba(255,255,255,.9) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 30%, rgba(255,255,255,.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 60%, rgba(255,255,255,.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 25% 70%, rgba(255,255,255,.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 75%, rgba(255,255,255,.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 45% 85%, rgba(255,255,255,.3) 0%, transparent 100%);
+  pointer-events: none;
+}
+.hero-wave {
+  position: absolute;
+  bottom: 56px; left: 0; right: 0;
+  height: 30px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 30'%3E%3Cpath d='M0,15 C200,30 400,0 600,15 C800,30 1000,0 1200,15 L1200,30 L0,30 Z' fill='rgba(8,145,178,0.3)'/%3E%3C/svg%3E") repeat-x;
+  animation: wave 4s linear infinite;
+}
+@keyframes wave { from { background-position: 0 0; } to { background-position: 1200px 0; } }
+
+.hero-content { position: relative; z-index: 1; text-align: center; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+  backdrop-filter: blur(8px);
+  color: #7dd3fc; font-size: 12px; font-weight: 500;
+  padding: 5px 14px; border-radius: 20px; margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 34px; font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 6px;
+  text-shadow: 0 2px 20px rgba(0,0,0,.3);
+}
+.hero-sub {
+  font-size: 14px; color: #93c5fd;
+  font-weight: 300; letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+.hero-pills {
+  display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+}
+.hero-pill {
+  background: rgba(255,255,255,.1); border: 0.5px solid rgba(255,255,255,.2);
+  color: #e0f2fe; font-size: 12px; padding: 4px 12px; border-radius: 20px;
+}
+
+/* ── TIMELINE TABS ── */
+.tab-bar {
+  position: sticky; top: 0; z-index: 30;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 12px;
+}
+.tab-scroll { display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+.tab-scroll::-webkit-scrollbar { display: none; }
+.tab-btn {
+  flex-shrink: 0;
+  padding: 14px 16px 12px;
+  font-size: 13px; font-weight: 500;
+  color: var(--text3);
+  background: none; border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .15s;
+}
+.tab-btn.active { color: var(--sea); border-bottom-color: var(--sea); font-weight: 700; }
+
+/* ── SECTION ── */
+.section { padding: 16px 16px 0; }
+.section-title {
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+  color: var(--text3); text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+/* ── DAY BANNER ── */
+.day-banner {
+  margin: 12px 16px;
+  border-radius: var(--r);
+  padding: 16px 18px;
+  display: flex; justify-content: space-between; align-items: center;
+  position: relative; overflow: hidden;
+}
+.day-banner.blue {
+  background: linear-gradient(135deg, #0c2a4a, #0e4d7a);
+  border: 1px solid #1e4a7a;
+}
+.day-banner.teal {
+  background: linear-gradient(135deg, #0e3a3a, #0e5a4a);
+  border: 1px solid #1a5a4a;
+}
+.day-banner.orange {
+  background: linear-gradient(135deg, #3a1a08, #5a2e0e);
+  border: 1px solid #7a3e1a;
+}
+.day-banner.purple {
+  background: linear-gradient(135deg, #1a0a3a, #2e1a5a);
+  border: 1px solid #3e2a7a;
+}
+.day-banner.green {
+  background: linear-gradient(135deg, #0a2a1a, #0e4a2a);
+  border: 1px solid #1a5a3a;
+}
+.day-banner.dark {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  border: 1px solid #334155;
+}
+.db-left {}
+.db-day { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: rgba(255,255,255,.5); margin-bottom: 4px; }
+.db-title { font-size: 18px; font-weight: 700; color: #fff; line-height: 1.3; }
+.db-sub { font-size: 12px; color: rgba(255,255,255,.55); margin-top: 3px; }
+.db-emoji { font-size: 36px; }
+
+/* ── CARD ── */
+.cards { padding: 0 16px 16px; display: flex; flex-direction: column; gap: 10px; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  transition: box-shadow .2s;
+}
+.card:active { box-shadow: 0 4px 20px rgba(0,0,0,.08); }
+
+.card-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 16px;
+  cursor: pointer;
+  user-select: none; -webkit-user-select: none;
+}
+.card-header:active { background: #f8fafc; }
+
+.card-icon {
+  width: 38px; height: 38px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.icon-move    { background: #f1f5f9; }
+.icon-eat     { background: #fff7ed; }
+.icon-hotel   { background: #f5f3ff; }
+.icon-beach   { background: #ecfdf5; }
+.icon-tour    { background: #eff6ff; }
+.icon-park    { background: #f0fdf4; }
+.icon-shop    { background: #fefce8; }
+.icon-car     { background: #fff1f2; }
+.icon-spa     { background: #fdf4ff; }
+.icon-night   { background: #0f172a; }
+
+.card-meta { flex: 1; min-width: 0; }
+.card-time { font-size: 11px; color: var(--text3); font-weight: 500; margin-bottom: 2px; }
+.card-name { font-size: 15px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.card-place { font-size: 11px; color: var(--text3); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.card-right { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.tag {
+  font-size: 10px; font-weight: 700; padding: 3px 7px; border-radius: 6px;
+  white-space: nowrap;
+}
+.tag-blue   { background: #eff6ff; color: #1d4ed8; }
+.tag-green  { background: #f0fdf4; color: #15803d; }
+.tag-orange { background: #fff7ed; color: #c2410c; }
+.tag-red    { background: #fff1f2; color: #be123c; }
+.tag-purple { background: #faf5ff; color: #7e22ce; }
+.tag-gray   { background: #f1f5f9; color: #475569; }
+.tag-teal   { background: #f0fdfa; color: #0f766e; }
+.tag-yellow { background: #fefce8; color: #a16207; }
+.tag-important { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+
+.chevron { font-size: 16px; color: var(--text3); transition: transform .25s; flex-shrink: 0; }
+.chevron.open { transform: rotate(180deg); }
+
+/* ── CARD DETAIL ── */
+.card-detail {
+  display: none;
+  border-top: 1px solid var(--border);
+  animation: fadeIn .2s ease;
+}
+.card-detail.open { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+
+.detail-hero {
+  position: relative; overflow: hidden;
+  height: 180px;
+  background: linear-gradient(135deg, #0c2a4a, #0891b2);
+  display: flex; align-items: center; justify-content: center;
+}
+.detail-hero-emoji { font-size: 64px; filter: drop-shadow(0 4px 20px rgba(0,0,0,.3)); }
+.detail-hero-overlay {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.6), transparent);
+  padding: 12px 16px 10px;
+}
+.detail-hero-title { font-size: 16px; font-weight: 700; color: #fff; }
+.detail-hero-sub { font-size: 12px; color: rgba(255,255,255,.7); margin-top: 2px; }
+
+/* Image gallery placeholder */
+.img-gallery {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px;
+  padding: 12px 16px 0;
+}
+.img-thumb {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+  background: linear-gradient(135deg, var(--c1), var(--c2));
+}
+
+.detail-body { padding: 16px; }
+
+.info-row {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+.info-row:last-of-type { border-bottom: none; }
+.info-icon { font-size: 18px; flex-shrink: 0; width: 24px; text-align: center; margin-top: 1px; }
+.info-content { flex: 1; }
+.info-label { font-size: 10px; font-weight: 700; color: var(--text3); letter-spacing: .5px; margin-bottom: 3px; }
+.info-value { font-size: 14px; color: var(--text); line-height: 1.6; }
+.info-value.bold { font-weight: 700; }
+.info-value.sea { color: var(--sea); font-weight: 600; }
+.info-value.warn { color: #d97706; font-weight: 500; }
+.info-value.danger { color: #dc2626; font-weight: 600; }
+.info-value.success { color: #059669; font-weight: 600; }
+
+.notice-box {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-top: 12px;
+}
+.notice-box.blue {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+.notice-box.green {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+.notice-box.red {
+  background: #fff1f2;
+  border-color: #fecdd3;
+}
+.notice-title { font-size: 12px; font-weight: 700; color: #92400e; margin-bottom: 6px; display: flex; align-items: center; gap: 5px; }
+.notice-box.blue .notice-title { color: #1e40af; }
+.notice-box.green .notice-title { color: #065f46; }
+.notice-box.red .notice-title { color: #9f1239; }
+.notice-text { font-size: 13px; color: #78350f; line-height: 1.7; }
+.notice-box.blue .notice-text { color: #1e3a5f; }
+.notice-box.green .notice-text { color: #064e3b; }
+.notice-box.red .notice-text { color: #881337; }
+
+.detail-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.detail-chip {
+  padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 500;
+  background: #f1f5f9; color: var(--text2); border: 1px solid var(--border);
+}
+.detail-chip.sea { background: #ecfeff; color: #0e7490; border-color: #a5f3fc; }
+.detail-chip.warm { background: #fff7ed; color: #9a3412; border-color: #fed7aa; }
+.detail-chip.green { background: #f0fdf4; color: #065f46; border-color: #a7f3d0; }
+
+/* parking detail */
+.parking-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px;
+}
+.p-cell {
+  background: #f8fafc; border-radius: 10px; padding: 12px;
+  border: 1px solid var(--border);
+}
+.p-label { font-size: 10px; font-weight: 700; color: var(--text3); margin-bottom: 4px; letter-spacing: .5px; }
+.p-value { font-size: 14px; font-weight: 600; color: var(--text); }
+.p-value.highlight { color: var(--sea); }
+
+/* ── FOOTER ── */
+.page-footer {
+  padding: 32px 20px 48px;
+  text-align: center;
+  color: var(--text3);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+/* ── SCROLL PROGRESS ── */
+.progress-bar {
+  position: fixed; top: 0; left: 0; z-index: 100;
+  height: 2px; background: linear-gradient(90deg, var(--sea), var(--sand2));
+  transition: width .1s;
+  width: 0%;
+}
+
+/* hidden tabs */
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-stars"></div>
+  <div class="hero-wave"></div>
+  <div class="hero-content">
+    <div class="hero-badge">✈️ &nbsp;FAMILY TRIP 2026</div>
+    <div class="hero-title">Da Nang<br>다낭 가족여행</div>
+    <div class="hero-sub">2026. 06. 21 — 06. 26</div>
+    <div class="hero-pills">
+      <span class="hero-pill">👨‍👩‍👧‍👦 가족여행</span>
+      <span class="hero-pill">5박 6일</span>
+      <span class="hero-pill">☀️ 31°C</span>
+      <span class="hero-pill">🏖 미케비치</span>
+    </div>
+  </div>
+</div>
+
+<!-- TAB BAR -->
+<div class="tab-bar">
+  <div class="tab-scroll">
+    <button class="tab-btn active" onclick="showTab('day0',this)">출발전</button>
+    <button class="tab-btn" onclick="showTab('day1',this)">6/21 Day1</button>
+    <button class="tab-btn" onclick="showTab('day2',this)">6/22 Day2</button>
+    <button class="tab-btn" onclick="showTab('day3',this)">6/23 Day3</button>
+    <button class="tab-btn" onclick="showTab('day4',this)">6/24 Day4</button>
+    <button class="tab-btn" onclick="showTab('day5',this)">6/25 Day5</button>
+    <button class="tab-btn" onclick="showTab('day6',this)">6/26 귀국</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     출발전 (주차 예약)
+════════════════════════════════ -->
+<div class="tab-content active" id="day0">
+  <div class="day-banner dark">
+    <div class="db-left">
+      <div class="db-day">PRE-DEPARTURE</div>
+      <div class="db-title">출발 준비</div>
+      <div class="db-sub">주차 예약 & 공항 이동</div>
+    </div>
+    <div class="db-emoji">🚗</div>
+  </div>
+  <div class="cards">
+
+    <div class="card" id="c-parking">
+      <div class="card-header" onclick="toggle('c-parking')">
+        <div class="card-icon icon-car">🅿️</div>
+        <div class="card-meta">
+          <div class="card-time">6월 21일 (일) 18:30 입차</div>
+          <div class="card-name">라운지 주차장 예약 완료</div>
+          <div class="card-place">부산 강서구 공항로 791번길 52</div>
+        </div>
+        <div class="card-right">
+          <span class="tag tag-green">예약완료</span>
+          <span class="chevron" id="chev-c-parking">⌄</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-c-parking">
+        <div class="detail-hero" style="background: linear-gradient(135deg, #1a1a2e, #16213e);">
+          <div class="detail-hero-emoji">🅿️</div>
+          <div class="detail-hero-overlay">
+            <div class="detail-hero-title">라운지 주차장</div>
+            <div class="detail-hero-sub">덕두초등학교 옆 · 김해공항 인근</div>
+          </div>
+        </div>
+        <div class="detail-body">
+          <div class="parking-grid">
+            <div class="p-cell"><div class="p-label">입차 일시</div><div class="p-value highlight">6/21 (일) 18:30</div></div>
+            <div class="p-cell"><div class="p-label">출차 일시</div><div class="p-value highlight">6/26 (금) 08:00</div></div>
+            <div class="p-cell"><div class="p-label">차량번호</div><div class="p-value">7186</div></div>
+            <div class="p-cell"><div class="p-label">주차요금</div><div class="p-value">60,000원</div></div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">💳</div>
+            <div class="info-content">
+              <div class="info-label">결제 방법</div>
+              <div class="info-value">현장 결제 (카드 또는 현금)</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">📍</div>
+            <div class="info-content">
+              <div class="info-label">주소</div>
+              <div class="info-value bold">부산 강서구 공항로 791번길 52<br><span style="font-weight:400;color:var(--text2)">덕두초등학교 옆 (라운지 주차장)</span></div>
+            </div>
+          </div>
+          <div class="notice-box blue">
+            <div class="notice-title">💡 현금 결제 할인</div>
+            <div class="notice-text">
+              3만~4.9만원 → 3천원 할인<br>
+              5만~9.9만원 → 5천원 할인<br>
+              10만원 이상 → 1만원 할인<br>
+              ※ 계좌이체 불가 (사전결제 없음)
+            </div>
+          </div>
+          <div class="notice-box red" style="margin-top:10px;">
+            <div class="notice-title">🚌 셔틀 안내 (중요)</div>
+            <div class="notice-text">
+              일행 5인부터 운전자 1인만 셔틀 지원<br>
+              (피크시즌 4인부터 적용 가능)<br><br>
+              <strong>출발 시:</strong> 일행·수하물은 공항에서 내리고, 운전자 혼자 주차장 입차 후 셔틀로 복귀<br><br>
+              <strong>귀국 후:</strong> 일행은 공항에서 대기, 운전자만 셔틀로 주차장 이동 → 출차 후 합류
+            </div>
+          </div>
+          <div class="detail-chips" style="margin-top:14px;">
+            <span class="detail-chip">5박 주차</span>
+            <span class="detail-chip warm">현장결제</span>
+            <span class="detail-chip">김해공항 5분</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     DAY 1 — 6/21
+════════════════════════════════ -->
+<div class="tab-content" id="day1">
+  <div class="day-banner blue">
+    <div class="db-left">
+      <div class="db-day">DAY 1 · 6월 21일 (일)</div>
+      <div class="db-title">출발 ✈️ 다낭 도착</div>
+      <div class="db-sub">김해공항 → 다낭국제공항</div>
+    </div>
+    <div class="db-emoji">✈️</div>
+  </div>
+  <div class="cards">
+
+    <!-- 주차장 도착 -->
+    <div class="card" id="c-d1-park">
+      <div class="card-header" onclick="toggle('c-d1-park')">
+        <div class="card-icon icon-car">🚗</div>
+        <div class="card-meta">
+          <div class="card-time">18:30</div>
+          <div class="card-name">라운지 주차장 도착 & 입차</div>
+          <div class="card-place">부산 강서구 공항로 791번길 52</div>
+        </div>
+        <div class="card-right">
+          <span class="tag tag-orange">18:30</span>
+          <span class="chevron" id="chev-c-d1-park">⌄</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-c-d1-park">
+        <div class="detail-hero" style="background: linear-gradient(135deg, #1a1a2e, #2d1b69);">
+          <div class="detail-hero-emoji">🚗</div>
+          <div class="detail-hero-overlay">
+            <div class="detail-hero-title">주차장 입차</div>
+            <div class="detail-hero-sub">라운지 주차장 · 18:30 예약</div>
+          </div>
+        </div>
+        <div class="detail-body">
+          <div class="info-row">
+            <div class="info-icon">🕡</div>
+            <div class="info-content">
+              <div class="info-label">입차 시각</div>
+              <div class="info-value bold sea">2026년 6월 21일 (일) 18:30</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">🚌</div>
+            <div class="info-content">
+              <div class="info-label">공항 이동</div>
+              <div class="info-value">주차장 → 김해공항 셔틀 이용<br><span style="color:var(--text3);font-size:12px">일행은 수하물과 함께 공항 먼저 이동, 운전자만 주차 후 합류</span></div>
+            </div>
+          </div>
+          <div class="notice-box">
+            <div class="notice-title">⏰ 시간 체크</div>
+            <div class="notice-text">
+              18:30 주차장 입차<br>
+              셔틀로 공항 이동 (약 10~15분)<br>
+              19:00 이전 공항 도착 목표<br>
+              20:50 탑승 기준 최소 2시간 전 수속 시작
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 탑승 수속 -->
+    <div class="card" id="c-d1-checkin">
+      <div class="card-header" onclick="toggle('c-d1-checkin')">
+        <div class="card-icon icon-move">🛂</div>
+        <div class="card-meta">
+          <div class="card-time">18:50 — 20:30</div>
+          <div class="card-name">탑승 수속 & 출국 심사</div>
+          <div class="card-place">김해국제공항 국제선 터미널</div>
+        </div>
+        <div class="card-right">
+          <span class="tag tag-blue">수속</span>
+          <span class="chevron" id="chev-c-d1-checkin">⌄</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-c-d1-checkin">
+        <div class="detail-hero" style="background: linear-gradient(135deg, #0c3a6e, #1e6fa8);">
+          <div class="detail-hero-emoji">🛂</div>
+          <div class="detail-hero-overlay">
+            <div class="detail-hero-title">김해국제공항</div>
+            <div class="detail-hero-sub">국제선 탑승 수속</div>
+          </div>
+        </div>
+        <div class="detail-body">
+          <div class="info-row">
+            <div class="info-icon">✈️</div>
+            <div class="info-content">
+              <div class="info-label">항공편</div>
+              <div class="info-value bold">김해 → 다낭 (DAD)</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">🕗</div>
+            <div class="info-content">
+              <div class="info-label">출발 시각</div>
+              <div class="info-value bold sea">20:50 출발</div>
+            </div>
+          </div>
+          <div class="notice-box blue">
+            <div class="notice-title">📋 수속 체크리스트</div>
+            <div class="notice-text">
+              ☐ 여권 (전원 확인)<br>
+              ☐ 항공권 e-티켓<br>
+              ☐ 수하물 위탁 (무게 초과 주의)<br>
+              ☐ 기내 반입 금지품목 제거<br>
+              ☐ 베트남 입국신고서 작성 (기내)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 비행 -->
+    <div class="card" id="c-d1-fly">
+      <div class="card-header" onclick="toggle('c-d1-fly')">
+        <div class="card-icon icon-move" style="background:#e0f2fe;">✈️</div>
+        <div class="card-meta">
+          <div class="card-time">20:50 출발 → 23:50 도착</div>
+          <div class="card-name">김해 → 다낭 비행 (약 3시간)</div>
+          <div class="card-place">김해국제공항 → 다낭국제공항 (DAD)</div>
+        </div>
+        <div class="card-right">
+          <span class="tag tag-blue">3시간</span>
+          <span class="chevron" id="chev-c-d1-fly">⌄</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-c-d1-fly">
+        <div class="detail-hero" style="background: linear-gradient(160deg, #0c1a4a 0%, #1a3a8a 50%, #2563eb 100%);">
+          <div class="detail-hero-emoji">🌙</div>
+          <div class="detail-hero-overlay">
+            <div class="detail-hero-title">야간 비행</div>
+            <div class="detail-hero-sub">20:50 김해 출발 → 23:50 다낭 도착</div>
+          </div>
+        </div>
+        <div class="detail-body">
+          <div class="info-row">
+            <div class="info-icon">⏱️</div>
+            <div class="info-content">
+              <div class="info-label">비행 시간</div>
+              <div class="info-value">약 3시간 (직항)</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">🌏</div>
+            <div class="info-content">
+              <div class="info-label">시차</div>
+              <div class="info-value">한국 대비 <span class="warn">-2시간</span><br><span style="font-size:12px;color:var(--text3)">한국 23:50 = 베트남 21:50</span></div>
+            </div>
+          </div>
+          <div class="notice-box">
+            <div class="notice-title">💡 기내 팁</div>
+            <div class="notice-text">
+              베트남 입국신고서 기내에서 미리 작성<br>
+              슬리퍼·목베개 챙기면 편안<br>
+              아이들 귀 통증 대비 껌·사탕 준비
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 다낭 도착 -->
+    <div class="card" id="c-d1-arrive">
+      <div class="card-header" onclick="toggle('c-d1-arrive')">
+        <div class="card-icon icon-move" style="background:#f0fdf4;">🛬</div>
+        <div class="card-meta">
+          <div class="card-time">23:50 (현지시각 21:50)</div>
+          <div class="card-name">다낭국제공항 도착</div>
+          <div class="card-place">Da Nang International Airport (DAD)</div>
+        </div>
+        <div class="card-right">
+          <span class="tag tag-green">도착</span>
+          <span class="chevron" id="chev-c-d1-arrive">⌄</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-c-d1-arrive">
+        <div class="detail-hero" style="background: linear-gradient(135deg, #064e3b, #059669);">
+          <div class="detail-hero-emoji">🛬</div>
+          <div class="detail-hero-overlay">
+            <div class="detail-hero-title">다낭국제공항 도착</div>
+            <div class="detail-hero-sub">현지시각 21:50 도착</div>
+          </div>
+        </div>
+        <div class="detail-body">
+          <div class="info-row">
+            <div class="info-icon">🛂</div>
+            <div class="info-content">
+              <div class="info-label">입국 심사</div>
+              <div class="info-value">여권 + 입국신고서 제출<br><span style="font-size:12px;color:var(--text3)">심사 후 수하물 수취 → 세관 통과</span></div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">📱</div>
+            <div class="info-content">
+              <div class="info-label">공항 와이파이</div>
+              <div class="info-value">공항 내 무료 WiFi 연결 후 Grab 앱 준비</div>
+            </div>
+          </div>
+          <div class="notice-box blue">
+            <div class="notice-title">📱 Grab 앱 설치 필수</div>
+            <div class="notice-text">
+              베트남판 카카오택시 = Grab<br>
+              미리 앱 설치 & 카드 등록 권장<br>
+              공항 택시보다 훨씬 저렴하고 안전<br>
+              공항 → TMS 호텔 예상 70,000~90,000₫
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     DAY 2 — 6/22 (새벽 도착 + 낮)
+════════════════════════════════ -->
+<div class="tab-content" id="day2">
+  <div class="day-banner teal">
+    <div class="db-left">
+      <div class="db-day">DAY 2 · 6월 22일 (월)</div>
+      <div class="db-title">호텔 체크인 & 호이안</div>
+      <div class="db-sub">새벽 도착 → 호이안 구시가지</div>
+    </div>
+    <div class="db-emoji">🏮</div>
+  </div>
+  <div class="cards">
+
+    <!-- 그랩 -->
+    <div class="card" id="c-d2-grab">
+      <div class="card-header" onclick="toggle('c-d2-grab')">
+        <div class="card-icon icon-move">🚖</div>
+        <div class="card-meta">
+          <div class="card-time">새벽 00:30</div>
+          <div class="card-name">Grab 탑승 → 숙소 이동</div>
+          <div class="card-place">다낭공항 → TMS 호텔 다낭 비치</div>
+        </div>
+        <div class="card-right">
+          <span class="tag tag-teal">Grab</span>
+          <span class="chevron" id="chev-c-d2-grab">⌄</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-c-d2-grab">
+        <div class="detail-hero" style="background: linear-gradient(135deg, #0e3a3a, #0e6b5a);">
+          <div class="detail-hero-emoji">🚖</div>
+          <div class="detail-hero-overlay">
+            <div class="detail-hero-title">Grab 공항 픽업</div>
+            <div class="detail-hero-sub">새벽 00:30 · 다낭공항 출발</div>
+          </div>
+        </div>
+        <div class="detail-body">
+          <div class="info-row">
+            <div class="info-icon">📍</div>
+            <div class="info-content">
+              <div class="info-label">출발 → 도착</div>
+              <div class="info-value bold">다낭국제공항 → TMS 호텔 다낭 비치</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">⏱️</div>
+            <div class="info-content">
+              <div class="info-label">소요시간 / 요금</div>
+              <div class="info-value">약 15~20분 / 70,000~90,000₫ 예상</div>
+            </div>
+          </div>
+          <div class="notice-box blue">
+            <div class="notice-title">📱 Grab 이용법</div>
+            <div class="notice-text">
+              1. Grab 앱 열기 → Car 선택<br>
+              2. 목적지: "TMS Hotel Da Nang Beach" 검색<br>
+              3. 배차 확인 후 탑승<br>
+              4. 번호판 & 기사 얼굴 확인 필수<br>
+              ※ 새벽이라 배차 빠름. 팁 불필요
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 호텔 체크인 -->
+    <div class="card" id="c-d2-hotel">
+      <div class="card-header" onclick="toggle('c-d2-hotel')">
+        <div class="card-icon icon-hotel">🏨</div>
+        <div class="card-meta">
+          <div class="card-time">새벽 01:00</div>
+          <div class="card-name">TMS 호텔 다낭 비치 체크인</div>
+          <div class="card-place">TMS Hotel Da Nang Beach, 미케비치</div>
+        </div>
+        <div class="card-right">
+          <span class="tag tag-purple">숙소</span>
+          <span class="chevron" id="chev-c-d2-hotel">⌄</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-c-d2-hotel">
+        <div class="detail-hero" style="background: linear-gradient(135deg, #1a0e4a, #4c1d95);">
+          <div class="detail-hero-emoji">🏨</div>
+          <div class="detail-hero-overlay">
+            <div class="detail-hero-title">TMS Hotel Da Nang Beach</div>
+            <div class="detail-hero-sub">미케비치 도보권 · 다낭 시내 중심</div>
+          </div>
+        </div>
+        <div class="img-gallery">
+          <div class="img-thumb" style="--c1:#0891b2;--c2:#0e7490;">🏊</div>
+          <div class="img-thumb" style="--c1:#7c3aed;--c2:#4c1d95;">🛏️</div>
+          <div class="img-thumb" style="--c1:#059669;--c2:#047857;">🌅</div>
+        </div>
+        <div class="detail-body">
+          <div class="info-row">
+            <div class="info-icon">📍</div>
+            <div class="info-content">
+              <div class="info-label">위치</div>
+              <div class="info-value">미케비치(My Khe Beach) 도보 3분<br>다낭 시내 중심가 접근 용이</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">🔑</div>
+            <div class="info-content">
+              <div class="info-label">체크인 / 체크아웃</div>
+              <div class="info-value">체크인: 6/22 새벽 01:00<br>체크아웃: 6/26 오전 (귀국 전)</div>
+            </div>
+          </div>
+          <div class="notice-box green">
+            <div class="notice-title">💡 호텔 팁</div>
+            <div class="notice-text">
+              수영장 있는 경우 아이들 물놀이 최적<br>
+              미케비치까지 걸어서 5분 이내<br>
+              조식 포함 여부 사전 확인<br>
+              귀중품은 룸 금고 활용
+            </div>
+          </div>
+          <div class="detail-chips">
+            <span class="detail-chip sea">미케비치 근접</span>
+            <span class="detail-chip">5박 숙박</span>
+            <span class="detail-chip green">다낭 중심</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 호이안 -->
+    <div class="card" id="c-d2-hoian">
+      <div class="card-header" onclick="toggle('c-d2-hoian')">
+        <div class="card-icon icon-tour">🏮</div>
+        <div class="card-meta">
+          <div class="card-time">09:00 — 20:00</div>
+          <div class="card-name">호이안 구시가지 투어</div>
+          <div class="card-place">Hoi An Ancient Town (세계문화유산)</div>
+        </div>
+        <div class="card-right">
+          <span class="tag tag-orange">추천</span>
+          <span class="chevron" id="chev-c-d2-hoian">⌄</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-c-d2-hoian">
+        <div class="detail-hero" style="background: linear-gradient(135deg, #7c2d12, #c2410c);">
+          <div class="detail-hero-emoji">🏮</div>
+          <div class="detail-hero-overlay">
+            <div class="detail-hero-title">호이안 구시가지</div>
+            <div class="detail-hero-sub">UNESCO 세계문화유산 · 다낭서 30km</div>
+          </div>
+        </div>
+        <div class="img-gallery">
+          <div class="img-thumb" style="--c1:#dc2626;--c2:#b91c1c;">🏮</div>
+          <div class="img-thumb" style="--c1:#d97706;--c2:#b45309;">🌉</div>
+          <div class="img-thumb" style="--c1:#059669;--c2:#047857;">🛶</div>
+        </div>
+        <div class="detail-body">
+          <div class="info-row">
+            <div class="info-icon">🚖</div>
+            <div class="info-content">
+              <div class="info-label">이동</div>
+              <div class="info-value">Grab 왕복 · 약 45분 · 왕복 350,000₫ 협상 가능</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">🎟️</div>
+            <div class="info-content">
+              <div class="info-label">입장료</div>
+              <div class="info-value">성인 120,000₫ / 어린이 60,000₫<br><span style="font-size:12px;color:var(--text3)">1장으로 6개 명소 이용</span></div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">🍜</div>
+            <div class="info-content">
+              <div class="info-label">점심 추천</div>
+              <div class="info-value bold">까오러우 + 화이트로즈 (반바오반박)<br><span style="font-weight:400;font-size:12px;color:var(--text3)">호이안에서만 맛볼 수 있는 향토 음식</span></div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">🛶</div>
+            <div class="info-content">
+              <div class="info-label">투본강 체험</div>
+              <div class="info-value">코롱 바구니 보트 100,000₫/인<br><span style="font-size:12px;color:var(--text3)">아이들 최고 인기 액티비티</span></div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">🌙</div>
+            <div class="info-content">
+              <div class="info-label">야시장 & 랜턴</div>
+              <div class="info-value">강에 소원 초롱 띄우기 20,000₫<br><span style="font-size:12px;color:var(--text3)">기념품 흥정 (제시가의 50~70%)</span></div>
+            </div>
+          </div>
+          <div class="notice-box">
+            <div class="notice-title">💡 호이안 꿀팁</div>
+            <div class="notice-text">
+              오전 일찍 방문해야 인파 적음<br>
+              낮 12~14시는 매우 더움 → 카페 휴식<br>
+              야시장은 오후 5시 이후 활성화<br>
+              걷기 많으니 편한 신발 필수
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     DAY 3 — 6/23
+════════════════════════════════ -->
+<div class="tab-content" id="day3">
+  <div class="day-banner orange">
+    <div class="db-left">
+      <div class="db-day">DAY 3 · 6월 23일 (화)</div>
+      <div class="db-title">바나힐 하루</div>
+      <div class="db-sub">골든브릿지 & 테마파크</div>
+    </div>
+    <div class="db-emoji">🏔</div>
+  </div>
+  <div class="cards">
+
+    <div class="card" id="c-d3-bana">
+      <div class="card-header" onclick="toggle('c-d3-bana')">
+        <div class="card-icon icon-tour">🌉</div>
+        <div class="card-meta">
+          <div class="card-time">08:00 — 19:00 (하루 종일)</div>
+          <div class="card-name">바나힐 & 골든브릿지</div>
+          <div class="card-place">Ba Na Hills, Da Nang (다낭서 40km)</div>
+        </div>
+        <div class="card-right">
+          <span class="tag tag-important">필수</span>
+          <span class="chevron" id="chev-c-d3-bana">⌄</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-c-d3-bana">
+        <div class="detail-hero" style="background: linear-gradient(135deg, #3a1a08, #c2410c);">
+          <div class="detail-hero-emoji">🌉</div>
+          <div class="detail-hero-overlay">
+            <div class="detail-hero-title">바나힐 골든브릿지</div>
+            <div class="detail-hero-sub">거대한 손 위에 놓인 황금 다리</div>
+          </div>
+        </div>
+        <div class="img-gallery">
+          <div class="img-thumb" style="--c1:#d97706;--c2:#92400e;">🌉</div>
+          <div class="img-thumb" style="--c1:#2563eb;--c2:#1d4ed8;">🚡</div>
+          <div class="img-thumb" style="--c1:#7c3aed;--c2:#6d28d9;">🎡</div>
+        </div>
+        <div class="detail-body">
+          <div class="info-row">
+            <div class="info-icon">🎟️</div>
+            <div class="info-content">
+              <div class="info-label">입장료</div>
+              <div class="info-value bold sea">성인 750,000₫ / 어린이 600,000₫<br><span style="font-weight:400;font-size:12px;color:var(--text3)">케이블카 + 뷔페 + 놀이공원 포함</span></div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">🚡</div>
+            <div class="info-content">
+              <div class="info-label">케이블카</div>
+              <div class="info-value">세계 최장 케이블카 중 하나<br>정상까지 약 20분 · 절경 감상</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">📸</div>
+            <div class="info-content">
+              <div class="info-label">골든브릿지 포토팁</div>
+              <div class="info-value">오전 10시 이후 안개 걷히면 뷰 최상<br>인파 피하려면 오전 9시 전 도착</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">🎢</div>
+            <div class="info-content">
+              <div class="info-label">판타지 파크 (실내 놀이공원)</div>
+              <div class="info-value">입장권 포함 · 키 120cm 이상 기구 다수<br>어린 자녀: 범퍼카, 회전목마, 미니게임</div>
+            </div>
+          </div>
+          <div class="notice-box">
+            <div class="notice-title">💡 바나힐 꿀팁</div>
+            <div class="notice-text">
+              오전 8시 전 출발 → 대기줄 최소화<br>
+              정상은 서늘 (약 20°C) → 얇은 겉옷 필수<br>
+              뷔페 점심 포함 (베트남·프랑스 요리)<br>
+              사진 배경은 안개 없는 날 최고<br>
+              그랩 왕복 500,000₫ 기사 협상 가능
+            </div>
+          </div>
+          <div class="detail-chips">
+            <span class="detail-chip warm">가족 추천 1위</span>
+            <span class="detail-chip">하루 종일</span>
+            <span class="detail-chip sea">세계최장 케이블카</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     DAY 4 — 6/24
+════════════════════════════════ -->
+<div class="tab-content" id="day4">
+  <div class="day-banner" style="background: linear-gradient(135deg, #0c2a4a, #0891b2); border: 1px solid #1e4a7a;">
+    <div class="db-left">
+      <div class="db-day">DAY 4 · 6월 24일 (수)</div>
+      <div class="db-title">미케비치 & 시내 관광</div>
+      <div class="db-sub">해수욕 · 오행산 · 링응사 야경</div>
+    </div>
+    <div class="db-emoji">🌊</div>
+  </div>
+  <div class="cards">
+
+    <div class="card" id="c-d4-beach">
+      <div class="card-header" onclick="toggle('c-d4-beach')">
+        <div class="card-icon icon-beach">🏖</div>
+        <div class="card-meta">
+          <div class="card-time">07:00 — 10:00</div>
+          <div class="card-name">미케비치 아침 해수욕</div>
+          <div class="card-place">My Khe Beach, Da Nang</div>
+        </div>
+        <div class="card-right">
+          <span class="tag tag-green">무료</span>
+          <span class="chevron" id="chev-c-d4-beach">⌄</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-c-d4-beach">
+        <div class="detail-hero" style="background: linear-gradient(135deg, #0369a1, #0ea5e9);">
+          <div class="detail-hero-emoji">🌊</div>
+          <div class="detail-hero-overlay">
+            <div class="detail-hero-title">미케비치 (My Khe Beach)</div>
+            <div class="detail-hero-sub">포브스 선정 세계 6대 해변</div>
+          </div>
+        </div>
+        <div class="img-gallery">
+          <div class="img-thumb" style="--c1:#0ea5e9;--c2:#0369a1;">🌊</div>
+          <div class="img-thumb" style="--c1:#f59e0b;--c2:#d97706;">🏖</div>
+          <div class="img-thumb" style="--c1:#10b981;--c2:#059669;">🌅</div>
+        </div>
+        <div class="detail-body">
+          <div class="info-row">
+            <div class="info-icon">💰</div>
+            <div class="info-content">
+              <div class="info-label">입장료 / 비용</div>
+              <div class="info-value success bold">무료 입장<br><span style="font-weight:400;font-size:12px;color:var(--text3)">파라솔+선베드 대여 50,000₫</span></div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">🌅</div>
+            <div class="info-content">
+              <div class="info-label">추천 시간대</div>
+              <div class="info-value">이른 아침 (07~09시) — 파도 잔잔, 인파 적음<br>오후 3시 이후 — 열기 식고 선셋 감상</div>
+            </div>
+          </div>
+          <div class="notice-box blue">
+            <div class="notice-title">☀️ 해변 필수품</div>
+            <div class="notice-text">
+              썬크림 SPF50+ (필수, 현지도 판매)<br>
+              물놀이 후 샤워실 이용 (무료~소액)<br>
+              아이들 물놀이 모래 놀이 도구<br>
+              수분 보충 코코넛 워터 10,000₫
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="c-d4-marble">
+      <div class="card-header" onclick="toggle('c-d4-marble')">
+        <div class="card-icon icon-tour">⛩️</div>
+        <div class="card-meta">
+          <div class="card-time">14:00 — 16:30</div>
+          <div class="card-name">오행산 (마블마운틴)</div>
+          <div class="card-place">Marble Mountains, 다낭 남부</div>
+        </div>
+        <div class="card-right">
+          <span class="tag tag-blue">관광</span>
+          <span class="chevron" id="chev-c-d4-marble">⌄</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-c-d4-marble">
+        <div class="detail-hero" style="background: linear-gradient(135deg, #1a0e2e, #2e1a6e);">
+          <div class="detail-hero-emoji">⛩️</div>
+          <div class="detail-hero-overlay">
+            <div class="detail-hero-title">오행산 · 마블마운틴</div>
+            <div class="detail-hero-sub">석회암 동굴 사원 & 전망대</div>
+          </div>
+        </div>
+        <div class="detail-body">
+          <div class="info-row">
+            <div class="info-icon">🎟️</div>
+            <div class="info-content">
+              <div class="info-label">입장료</div>
+              <div class="info-value">40,000₫/인 · 케이블카 별도 15,000₫</div>
+            </div>
+          </div>
+          <div class="notice-box">
+            <div class="notice-title">💡 꿀팁</div>
+            <div class="notice-text">
+              케이블카 이용 시 체력 절약<br>
+              동굴 사원 탐방이 하이라이트<br>
+              정상 전망대에서 미케비치 전경 감상<br>
+              더위 대비 물 충분히 챙기기
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="c-d4-linhu">
+      <div class="card-header" onclick="toggle('c-d4-linhu')">
+        <div class="card-icon icon-tour">🙏</div>
+        <div class="card-meta">
+          <div class="card-time">17:30 — 19:30</div>
+          <div class="card-name">링응사 & 선짜반도 일몰</div>
+          <div class="card-place">Linh Ung Pagoda, Son Tra Peninsula</div>
+        </div>
+        <div class="card-right">
+          <span class="tag tag-teal">일몰뷰</span>
+          <span class="chevron" id="chev-c-d4-linhu">⌄</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-c-d4-linhu">
+        <div class="detail-hero" style="background: linear-gradient(135deg, #0c1a2e, #d97706);">
+          <div class="detail-hero-emoji">🌇</div>
+          <div class="detail-hero-overlay">
+            <div class="detail-hero-title">링응사 일몰 뷰</div>
+            <div class="detail-hero-sub">해수관음상 67m · 다낭 전경</div>
+          </div>
+        </div>
+        <div class="detail-body">
+          <div class="info-row">
+            <div class="info-icon">💰</div>
+            <div class="info-content"><div class="info-label">입장료</div><div class="info-value success bold">무료</div></div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">📸</div>
+            <div class="info-content">
+              <div class="info-label">포토 포인트</div>
+              <div class="info-value">높이 67m 해수관음상<br>일몰 무렵 황금빛 다낭 시내 전경</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     DAY 5 — 6/25
+════════════════════════════════ -->
+<div class="tab-content" id="day5">
+  <div class="day-banner purple">
+    <div class="db-left">
+      <div class="db-day">DAY 5 · 6월 25일 (목)</div>
+      <div class="db-title">자유 & 쇼핑</div>
+      <div class="db-sub">콩카페 · 한시장 · 마사지</div>
+    </div>
+    <div class="db-emoji">🛍</div>
+  </div>
+  <div class="cards">
+
+    <div class="card" id="c-d5-cafe">
+      <div class="card-header" onclick="toggle('c-d5-cafe')">
+        <div class="card-icon icon-eat">☕</div>
+        <div class="card-meta">
+          <div class="card-time">09:00 — 10:30</div>
+          <div class="card-name">콩카페 (코코넛 커피)</div>
+          <div class="card-place">Cộng Cà Phê, 다낭 한강변</div>
+        </div>
+        <div class="card-right">
+          <span class="tag tag-yellow">인생카페</span>
+          <span class="chevron" id="chev-c-d5-cafe">⌄</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-c-d5-cafe">
+        <div class="detail-hero" style="background: linear-gradient(135deg, #1a0e08, #5c2a12);">
+          <div class="detail-hero-emoji">☕</div>
+          <div class="detail-hero-overlay">
+            <div class="detail-hero-title">콩카페 · Cộng Cà Phê</div>
+            <div class="detail-hero-sub">다낭 필수 카페 · 한강뷰</div>
+          </div>
+        </div>
+        <div class="detail-body">
+          <div class="info-row">
+            <div class="info-icon">💰</div>
+            <div class="info-content"><div class="info-label">가격대</div><div class="info-value">45,000~65,000₫/잔</div></div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">⭐</div>
+            <div class="info-content">
+              <div class="info-label">대표 메뉴</div>
+              <div class="info-value bold">카페콩 (코코넛 스무디 커피)<br><span style="font-weight:400;font-size:12px;">2층 한강뷰 자리 추천</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="c-d5-market">
+      <div class="card-header" onclick="toggle('c-d5-market')">
+        <div class="card-icon icon-shop">🛒</div>
+        <div class="card-meta">
+          <div class="card-time">11:00 — 13:00</div>
+          <div class="card-name">한시장 기념품 쇼핑</div>
+          <div class="card-place">Hàn Market (한 시장), 다낭</div>
+        </div>
+        <div class="card-right">
+          <span class="tag tag-yellow">쇼핑</span>
+          <span class="chevron" id="chev-c-d5-market">⌄</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-c-d5-market">
+        <div class="detail-hero" style="background: linear-gradient(135deg, #3a2a08, #d97706);">
+          <div class="detail-hero-emoji">🛒</div>
+          <div class="detail-hero-overlay">
+            <div class="detail-hero-title">한 시장 (Hàn Market)</div>
+            <div class="detail-hero-sub">다낭 최대 전통시장 · 기념품 천국</div>
+          </div>
+        </div>
+        <div class="detail-body">
+          <div class="info-row">
+            <div class="info-icon">🎁</div>
+            <div class="info-content">
+              <div class="info-label">추천 기념품</div>
+              <div class="info-value">커피(G7·콩카페 원두) · 과일잼<br>아오자이 · 랜턴 · 스낵과자류<br>코코넛캔디 · 베트남 소스류</div>
+            </div>
+          </div>
+          <div class="notice-box">
+            <div class="notice-title">💡 쇼핑 꿀팁</div>
+            <div class="notice-text">
+              1층: 농산물·신선식품<br>
+              2층: 의류·기념품·공예품<br>
+              흥정 필수! 제시가의 50~70%<br>
+              여러 상점 비교 후 구매
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="c-d5-spa">
+      <div class="card-header" onclick="toggle('c-d5-spa')">
+        <div class="card-icon icon-spa">💆</div>
+        <div class="card-meta">
+          <div class="card-time">15:00 — 17:00</div>
+          <div class="card-name">전통 마사지 & 스파</div>
+          <div class="card-place">다낭 시내 스파샵</div>
+        </div>
+        <div class="card-right">
+          <span class="tag tag-purple">힐링</span>
+          <span class="chevron" id="chev-c-d5-spa">⌄</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-c-d5-spa">
+        <div class="detail-hero" style="background: linear-gradient(135deg, #2d1b69, #7c3aed);">
+          <div class="detail-hero-emoji">💆</div>
+          <div class="detail-hero-overlay">
+            <div class="detail-hero-title">다낭 마사지 & 스파</div>
+            <div class="detail-hero-sub">여행 피로 해소 · 가족 힐링 타임</div>
+          </div>
+        </div>
+        <div class="detail-body">
+          <div class="info-row">
+            <div class="info-icon">💰</div>
+            <div class="info-content"><div class="info-label">가격</div><div class="info-value">60분 타이마사지 200,000~300,000₫</div></div>
+          </div>
+          <div class="notice-box blue">
+            <div class="notice-title">💡 마사지 팁</div>
+            <div class="notice-text">
+              가족 패밀리룸 운영 업체 선택<br>
+              사전 예약 권장 (당일 만석 많음)<br>
+              팁 10,000~20,000₫ 주는 것이 예의<br>
+              발 마사지 + 전신 패키지 추천
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="c-d5-bigc">
+      <div class="card-header" onclick="toggle('c-d5-bigc')">
+        <div class="card-icon icon-shop">🏪</div>
+        <div class="card-meta">
+          <div class="card-time">17:30 — 19:30</div>
+          <div class="card-name">빅씨 마트 & 마지막 쇼핑</div>
+          <div class="card-place">Big C Supermarket, 다낭</div>
+        </div>
+        <div class="card-right">
+          <span class="tag tag-yellow">마트</span>
+          <span class="chevron" id="chev-c-d5-bigc">⌄</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-c-d5-bigc">
+        <div class="detail-hero" style="background: linear-gradient(135deg, #1a3a08, #3a7a12);">
+          <div class="detail-hero-emoji">🏪</div>
+          <div class="detail-hero-overlay">
+            <div class="detail-hero-title">빅씨 마트 (Big C)</div>
+            <div class="detail-hero-sub">대용량 기념품 쇼핑 최적지</div>
+          </div>
+        </div>
+        <div class="detail-body">
+          <div class="info-row">
+            <div class="info-icon">🎁</div>
+            <div class="info-content">
+              <div class="info-label">추천 구매 품목</div>
+              <div class="info-value">코코넛캔디 · 땅콩과자 · 즉석커피<br>G7 커피믹스 · 베트남 라면<br>고수 오일 · 열대과일잼</div>
+            </div>
+          </div>
+          <div class="notice-box green">
+            <div class="notice-title">💡 마트 팁</div>
+            <div class="notice-text">
+              한시장보다 가격 고정 · 흥정 불필요<br>
+              액체류 기내 반입 제한 주의 (100ml 이하)<br>
+              수하물 무게 미리 체크하고 구매
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     DAY 6 — 6/26 귀국
+════════════════════════════════ -->
+<div class="tab-content" id="day6">
+  <div class="day-banner dark">
+    <div class="db-left">
+      <div class="db-day">DAY 6 · 6월 26일 (금)</div>
+      <div class="db-title">귀국</div>
+      <div class="db-sub">다낭 출발 → 김해공항 도착</div>
+    </div>
+    <div class="db-emoji">🏠</div>
+  </div>
+  <div class="cards">
+
+    <!-- 자정 출발 -->
+    <div class="card" id="c-d6-depart">
+      <div class="card-header" onclick="toggle('c-d6-depart')">
+        <div class="card-icon icon-move" style="background:#0f172a;">✈️</div>
+        <div class="card-meta">
+          <div class="card-time">새벽 00:45</div>
+          <div class="card-name">다낭공항 출발 → 김해 귀국</div>
+          <div class="card-place">Da Nang Airport (DAD) → 김해국제공항</div>
+        </div>
+        <div class="card-right">
+          <span class="tag tag-blue">귀국편</span>
+          <span class="chevron" id="chev-c-d6-depart">⌄</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-c-d6-depart">
+        <div class="detail-hero" style="background: linear-gradient(160deg, #0c1a2e, #1e293b);">
+          <div class="detail-hero-emoji">🌙</div>
+          <div class="detail-hero-overlay">
+            <div class="detail-hero-title">다낭 → 김해 야간 귀국편</div>
+            <div class="detail-hero-sub">00:45 출발 · 07:20 도착</div>
+          </div>
+        </div>
+        <div class="detail-body">
+          <div class="info-row">
+            <div class="info-icon">🕛</div>
+            <div class="info-content">
+              <div class="info-label">출발</div>
+              <div class="info-value bold sea">6월 26일 새벽 00:45 다낭공항</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">🕖</div>
+            <div class="info-content">
+              <div class="info-label">도착</div>
+              <div class="info-value bold sea">6월 26일 07:20 김해국제공항</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">⏱️</div>
+            <div class="info-content">
+              <div class="info-label">비행 시간</div>
+              <div class="info-value">약 3시간 35분 (야간 직항)</div>
+            </div>
+          </div>
+          <div class="notice-box red">
+            <div class="notice-title">⚠️ 출국 전 체크리스트</div>
+            <div class="notice-text">
+              ☐ 호텔 체크아웃 (전날 또는 새벽)<br>
+              ☐ 수하물 무게 확인 (초과 수수료 주의)<br>
+              ☐ 액체류 기내반입 제한 확인<br>
+              ☐ 여권 / 탑승권 확인<br>
+              ☐ 베트남 동(₫) 잔액 소진 또는 환전<br>
+              ☐ 공항 최소 3시간 전 도착
+            </div>
+          </div>
+          <div class="notice-box">
+            <div class="notice-title">🕙 시간 역산 계획</div>
+            <div class="notice-text">
+              6/25 22:00 — 호텔 체크아웃 완료 & 짐 정리<br>
+              6/25 22:30 — Grab으로 공항 이동 (약 20분)<br>
+              6/25 23:00 — 공항 도착, 출국 수속 시작<br>
+              6/26 00:20 — 게이트 대기<br>
+              6/26 00:45 — 탑승 출발 🛫
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 김해 도착 -->
+    <div class="card" id="c-d6-arrive">
+      <div class="card-header" onclick="toggle('c-d6-arrive')">
+        <div class="card-icon icon-move" style="background:#f0fdf4;">🛬</div>
+        <div class="card-meta">
+          <div class="card-time">07:20</div>
+          <div class="card-name">김해국제공항 도착</div>
+          <div class="card-place">김해국제공항 → 주차장 픽업</div>
+        </div>
+        <div class="card-right">
+          <span class="tag tag-green">귀가</span>
+          <span class="chevron" id="chev-c-d6-arrive">⌄</span>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-c-d6-arrive">
+        <div class="detail-hero" style="background: linear-gradient(135deg, #064e3b, #047857);">
+          <div class="detail-hero-emoji">🏠</div>
+          <div class="detail-hero-overlay">
+            <div class="detail-hero-title">김해공항 도착 · 귀가</div>
+            <div class="detail-hero-sub">07:20 도착 · 주차장 셔틀 이용</div>
+          </div>
+        </div>
+        <div class="detail-body">
+          <div class="info-row">
+            <div class="info-icon">🕖</div>
+            <div class="info-content">
+              <div class="info-label">도착 시각</div>
+              <div class="info-value bold sea">2026년 6월 26일 (금) 07:20</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">🅿️</div>
+            <div class="info-content">
+              <div class="info-label">주차장 출차</div>
+              <div class="info-value">라운지 주차장 출차 예정: <span class="bold">08:00</span><br>일행은 공항 대기 → 운전자 셔틀로 주차장 이동 → 출차 후 합류</div>
+            </div>
+          </div>
+          <div class="notice-box green">
+            <div class="notice-title">🎉 즐거운 여행 마무리!</div>
+            <div class="notice-text">
+              수하물 수취 후 셔틀 탑승<br>
+              라운지 주차장 출차 (08:00 예정)<br>
+              주차비 60,000원 현장 결제<br>
+              안전 귀가 후 여행 사진 정리 😊
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="page-footer">
+  🌴 다낭 가족여행 2026<br>
+  6월 21일 — 6월 26일 · 5박 6일<br>
+  <span style="font-size:11px;margin-top:4px;display:block;">즐거운 여행 되세요 ✈️</span>
+</div>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggle(cardId) {
+  const detail = document.getElementById('detail-' + cardId);
+  const chev = document.getElementById('chev-' + cardId);
+  const isOpen = detail.classList.toggle('open');
+  chev.classList.toggle('open', isOpen);
+}
+
+// scroll progress
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  document.getElementById('progressBar').style.width = (scrolled / total * 100) + '%';
+});
+</script>
+</body>
+</html>
