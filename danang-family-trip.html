@@ -540,7 +540,7 @@ body {
   <div class="hero-stars"></div>
   <div class="hero-wave"></div>
   <div class="hero-content">
-    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v3.6</div>
+    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v3.7</div>
 <div class="hero-badge">✈️ &nbsp;FAMILY TRIP 2026</div>
     <div class="hero-title">Da Nang<br>다낭 가족여행</div>
     <div class="hero-sub">2026. 06. 21 — 06. 26</div>
@@ -1993,15 +1993,26 @@ document.addEventListener('DOMContentLoaded', () => {
     if (chev) right.insertBefore(moveBtns, chev);
     else right.appendChild(moveBtns);
 
-   // 삭제 버튼 삽입
-    if (!card.querySelector('.btn-card-delete')) {
+   if (!card.querySelector('.btn-card-delete')) {
+      const moveBtn = document.createElement('button');
+      moveBtn.className = 'btn-card-delete';
+      moveBtn.style.cssText = 'background:#eff6ff;border-color:#bfdbfe;color:#1d4ed8;';
+      moveBtn.innerHTML = '📅';
+      moveBtn.onclick = (e) => { e.stopPropagation(); openMoveDay(id); };
+
       const delBtn = document.createElement('button');
       delBtn.className = 'btn-card-delete';
       delBtn.innerHTML = '✕';
       delBtn.onclick = (e) => { e.stopPropagation(); deleteCard(id); };
+
       const chev = right.querySelector('.chevron');
-      if (chev) right.insertBefore(delBtn, chev);
-      else right.appendChild(delBtn);
+      if (chev) {
+        right.insertBefore(delBtn, chev);
+        right.insertBefore(moveBtn, delBtn);
+      } else {
+        right.appendChild(moveBtn);
+        right.appendChild(delBtn);
+      }
     }
   });
 });
