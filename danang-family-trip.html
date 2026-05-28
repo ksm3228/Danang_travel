@@ -572,6 +572,83 @@ function saveCardsToFirebase() {
   color: #fff; background: #d97706; 
   padding: 1px 5px; border-radius: 4px; 
 }
+
+.img-upload-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+  margin-top: 6px;
+}
+.img-upload-slot {
+  aspect-ratio: 1; border-radius: 10px; overflow: hidden;
+  border: 1.5px dashed var(--border); background: #f8fafc;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; position: relative; font-size: 28px; color: var(--text3);
+}
+.img-upload-slot img {
+  width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;
+}
+.img-upload-slot input[type=file] {
+  position: absolute; inset: 0; opacity: 0; cursor: pointer;
+}
+.img-upload-slot .del-img {
+  position: absolute; top: 4px; right: 4px;
+  background: rgba(0,0,0,.5); color: #fff;
+  border: none; border-radius: 50%; width: 20px; height: 20px;
+  font-size: 12px; cursor: pointer; display: none;
+  align-items: center; justify-content: center;
+}
+.img-upload-slot.has-img .del-img { display: flex; }
+
+// ── 이미지 업로드 ──
+let uploadedImgs = [null, null, null];
+
+function handleImgUpload(idx, input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    uploadedImgs[idx] = e.target.result;
+    const slot = document.getElementById('imgSlot' + idx);
+    let img = slot.querySelector('img');
+    if (!img) { img = document.createElement('img'); slot.insertBefore(img, slot.firstChild); }
+    img.src = e.target.result;
+    slot.classList.add('has-img');
+  };
+  reader.readAsDataURL(file);
+}
+
+function clearImgSlot(idx, e) {
+  e.stopPropagation();
+  uploadedImgs[idx] = null;
+  const slot = document.getElementById('imgSlot' + idx);
+  const img = slot.querySelector('img');
+  if (img) img.remove();
+  slot.classList.remove('has-img');
+}
+
+function clearAllImgSlots() {
+  uploadedImgs = [null, null, null];
+  for (let i = 0; i < 3; i++) {
+    const slot = document.getElementById('imgSlot' + i);
+    const img = slot?.querySelector('img');
+    if (img) img.remove();
+    slot?.classList.remove('has-img');
+  }
+}
+
+function loadImgsToSlots(imgs) {
+  clearAllImgSlots();
+  if (!Array.isArray(imgs)) return;
+  imgs.forEach((src, i) => {
+    if (!src || i > 2) return;
+    uploadedImgs[i] = src;
+    const slot = document.getElementById('imgSlot' + i);
+    if (!slot) return;
+    const img = document.createElement('img');
+    img.src = src;
+    slot.insertBefore(img, slot.firstChild);
+    slot.classList.add('has-img');
+  });
+}
       
 </style>
 
@@ -732,7 +809,7 @@ window.doSignOut = () => signOut(auth);
   <div class="hero-stars"></div>
   <div class="hero-wave"></div>
   <div class="hero-content">
-    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v6.0</div>
+    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v6.1</div>
 <div class="hero-badge">✈️ &nbsp;FAMILY TRIP 2026</div>
     <div class="hero-title">Da Nang<br>다낭 가족여행</div>
     <div class="hero-sub">2026. 06. 21 — 06. 26</div>
@@ -1847,8 +1924,27 @@ window.doSignOut = () => signOut(auth);
   <input type="hidden" id="f_place" value="">
   <input type="hidden" id="f_cost" value="">
   <input type="hidden" id="f_duration" value="">
+
   <div class="form-group">
-    <label>상세 내용 / 꿀팁</label>
+  <label>사진 (최대 3장)</label>
+  <div class="img-upload-grid">
+    <div class="img-upload-slot" id="imgSlot0">➕
+      <input type="file" accept="image/*" onchange="handleImgUpload(0,this)">
+      <button class="del-img" onclick="clearImgSlot(0,event)">✕</button>
+    </div>
+    <div class="img-upload-slot" id="imgSlot1">➕
+      <input type="file" accept="image/*" onchange="handleImgUpload(1,this)">
+      <button class="del-img" onclick="clearImgSlot(1,event)">✕</button>
+    </div>
+    <div class="img-upload-slot" id="imgSlot2">➕
+      <input type="file" accept="image/*" onchange="handleImgUpload(2,this)">
+      <button class="del-img" onclick="clearImgSlot(2,event)">✕</button>
+    </div>
+  </div>
+</div>      
+      
+  <div class="form-group">
+    <label>상세 내용</label>
     <textarea id="f_tip" placeholder="장소 설명, 꿀팁, 주의사항 등 자유롭게 입력하세요"></textarea>
   </div>
 </div>
@@ -1914,7 +2010,8 @@ function openSheet(cardId) {
   editingCardId = cardId || null;
   const isEdit = !!cardId;
   document.getElementById('sheetTitle').textContent = isEdit ? '일정 수정' : '일정 추가';
-
+  
+  
   if (isEdit) {
     // find which tab this card belongs to
     const card = document.getElementById(cardId);
@@ -1929,6 +2026,7 @@ function openSheet(cardId) {
     document.getElementById('f_cost').value   = card.dataset.cost    || '';
     document.getElementById('f_duration').value = card.dataset.duration || '';
     document.getElementById('f_tip').value    = card.dataset.tip     || '';
+    loadImgsToSlots(card.dataset.imgs ? JSON.parse(card.dataset.imgs) : []);
   } else {
     document.getElementById('f_time').value = '';
     document.getElementById('f_name').value = '';
@@ -1942,6 +2040,7 @@ function openSheet(cardId) {
     // default to current visible tab
     const activeTab = document.querySelector('.tab-content.active');
     document.getElementById('f_day').value = activeTab ? activeTab.id : 'day1';
+    clearAllImgSlots();
   }
 
   document.getElementById('sheetBackdrop').classList.add('open');
@@ -1985,6 +2084,7 @@ function buildCard(id, data) {
     data-cost="${(data.cost||'').replace(/"/g,'&quot;')}"
     data-duration="${(data.duration||'').replace(/"/g,'&quot;')}"
     data-tip="${(data.tip||'').replace(/"/g,'&quot;').replace(/\n/g,'&#10;')}">
+    data-imgs='${(data.imgs||"[]")}'
     <div class="card-header" onclick="toggle('${id}')">
       ${(function(t){
         if(!t) return '<div class="card-time-col"><div class="card-time-empty">—</div></div>';
@@ -2013,6 +2113,15 @@ function buildCard(id, data) {
     <div class="card-detail" id="detail-${id}">
      
       <div class="detail-body">
+        ${(()=>{
+          try {
+            const arr = JSON.parse(data.imgs||'[]');
+            if (!arr.length) return '';
+            return '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:12px;">' +
+              arr.map(src=>'<img src="'+src+'" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;">').join('') +
+              '</div>';
+          } catch { return ''; }
+        })()}
         ${placeHtml}${costHtml}${durHtml}
         ${tipHtml}
         <div class="card-edit-bar">
@@ -2042,6 +2151,7 @@ function saveItem() {
     cost:      document.getElementById('f_cost').value.trim(),
     duration:  document.getElementById('f_duration').value.trim(),
     tip:       document.getElementById('f_tip').value.trim(),
+    imgs: JSON.stringify(uploadedImgs.filter(Boolean)),
   };
 
   if (editingCardId) {
