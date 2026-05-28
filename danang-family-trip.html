@@ -662,8 +662,7 @@ body {
     </div>
     <div class="db-emoji">✈️</div>
   </div>
-  <div class="cards">
-    <div class="card" id="c-d1-park">
+ 
 
     <!-- 주차장 도착 -->
     <div class="card" id="c-d1-park">
@@ -1869,7 +1868,7 @@ function buildCard(id, data) {
       <div class="detail-body">
         ${placeHtml}${costHtml}${durHtml}
         ${tipHtml}
-        <div class="card-edit-bar" style="display:flex;">
+        <div class="card-edit-bar">
   <button class="btn-edit-action danger" onclick="deleteCard('${id}')">🗑 삭제</button>
   <button class="btn-edit-action" onclick="moveCard('${id}',-1)">↑ 위로</button>
   <button class="btn-edit-action" onclick="moveCard('${id}',1)">↓ 아래로</button>
