@@ -701,7 +701,7 @@ window.doSignOut = () => signOut(auth);
   <div class="hero-stars"></div>
   <div class="hero-wave"></div>
   <div class="hero-content">
-    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v4.9</div>
+    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v5.1</div>
 <div class="hero-badge">✈️ &nbsp;FAMILY TRIP 2026</div>
     <div class="hero-title">Da Nang<br>다낭 가족여행</div>
     <div class="hero-sub">2026. 06. 21 — 06. 26</div>
@@ -2195,6 +2195,85 @@ function closeMoveDay() {
   document.getElementById('moveDaySheet').classList.remove('open');
   moveDayTargetId = null;
 }
+
+// ── ATTACH CARD BUTTONS ──
+function attachCardButtons(cardId) {
+  const card = document.getElementById(cardId);
+  if (!card) return;
+  const right = card.querySelector('.card-right');
+  if (!right || right.querySelector('.card-move-btns')) return;
+  const id = cardId;
+
+  const moveBtns = document.createElement('div');
+  moveBtns.className = 'card-move-btns';
+  moveBtns.setAttribute('onclick', 'event.stopPropagation()');
+  moveBtns.innerHTML =
+    `<button class="btn-move-card" onclick="moveCard('${id}',-1)">↑</button>` +
+    `<button class="btn-move-card" onclick="moveCard('${id}',1)">↓</button>`;
+  const chev = right.querySelector('.chevron');
+  if (chev) right.insertBefore(moveBtns, chev);
+  else right.appendChild(moveBtns);
+
+  if (!card.querySelector('.btn-card-delete')) {
+    const moveBtn = document.createElement('button');
+    moveBtn.className = 'btn-card-delete';
+    moveBtn.style.cssText = 'background:#eff6ff;border-color:#bfdbfe;color:#1d4ed8;';
+    moveBtn.innerHTML = '📅';
+    moveBtn.onclick = (e) => { e.stopPropagation(); openMoveDay(id); };
+
+    const delBtn = document.createElement('button');
+    delBtn.className = 'btn-card-delete';
+    delBtn.innerHTML = '✕';
+    delBtn.onclick = (e) => { e.stopPropagation(); deleteCard(id); };
+
+    const chev2 = right.querySelector('.chevron');
+    if (chev2) {
+      right.insertBefore(delBtn, chev2);
+      right.insertBefore(moveBtn, delBtn);
+    } else {
+      right.appendChild(moveBtn);
+      right.appendChild(delBtn);
+    }
+  }
+
+  // 항상 보이는 수정 버튼
+  const detail = card.querySelector('.card-detail');
+  if (detail && !detail.querySelector('.btn-always-edit')) {
+    const editBtn = document.createElement('button');
+    editBtn.className = 'btn-always-edit';
+    editBtn.style.cssText = 'margin:12px 16px 16px;width:calc(100% - 32px);padding:11px;border-radius:10px;border:1px solid var(--border);background:#f1f5f9;color:var(--text2);font-size:14px;font-weight:600;cursor:pointer;display:block;';
+    editBtn.textContent = '✏️ 내용 수정';
+    editBtn.onclick = () => openSheet(id);
+    detail.appendChild(editBtn);
+  }
+}
+
+// ── 카드 전체 Firebase 저장 ──
+function saveCardsToFirebase() {
+  if (!window._fbReady) return;
+  const allCards = [];
+  document.querySelectorAll('.tab-content').forEach(tab => {
+    tab.querySelectorAll('.card').forEach(card => {
+      if (!card.id.startsWith('uc')) return; // 동적 추가 카드만 저장
+      allCards.push({
+        id: card.id,
+        tab: tab.id,
+        time: card.dataset.time || '',
+        name: card.dataset.name || '',
+        icon: card.dataset.icon || '',
+        tag: card.dataset.tag || '',
+        tagStyle: card.dataset.tagStyle || '',
+        place: card.dataset.place || '',
+        cost: card.dataset.cost || '',
+        duration: card.dataset.duration || '',
+        tip: card.dataset.tip || '',
+      });
+    });
+  });
+  const { set: fbSet, ref: fbRef, db: fbDb } = window._fb;
+  fbSet(fbRef(fbDb, 'danang_cards'), allCards.length ? allCards : null);
+}
+
   
 </script>
 </body>
