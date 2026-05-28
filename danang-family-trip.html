@@ -671,13 +671,29 @@ onAuthStateChanged(auth, (user) => {
     onValue(cardsRef, (snapshot) => {
       const cards = snapshot.val();
       if (!Array.isArray(cards)) return;
+
+      // 탭별로 카드 순서 재정렬
+      const tabOrder = {};
       cards.forEach(c => {
-        
-        if (document.getElementById(c.id)) return;
-        const targetCards = document.querySelector('#' + c.tab + ' .cards');
-        if (!targetCards) return;
-        targetCards.insertAdjacentHTML('beforeend', buildCard(c.id, c));
-        setTimeout(() => attachCardButtons(c.id), 100);
+        if (!tabOrder[c.tab]) tabOrder[c.tab] = [];
+        tabOrder[c.tab].push(c);
+      });
+
+      Object.entries(tabOrder).forEach(([tabId, tabCards]) => {
+        const container = document.querySelector('#' + tabId + ' .cards');
+        if (!container) return;
+
+        tabCards.forEach(c => {
+          let el = document.getElementById(c.id);
+          if (!el) {
+            // 동적 카드면 새로 생성
+            container.insertAdjacentHTML('beforeend', buildCard(c.id, c));
+            el = document.getElementById(c.id);
+            setTimeout(() => attachCardButtons(c.id), 100);
+          }
+          // 순서대로 이동
+          container.appendChild(el);
+        });
       });
     }, { onlyOnce: true });
 
@@ -716,7 +732,7 @@ window.doSignOut = () => signOut(auth);
   <div class="hero-stars"></div>
   <div class="hero-wave"></div>
   <div class="hero-content">
-    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v5.6</div>
+    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v5.7</div>
 <div class="hero-badge">✈️ &nbsp;FAMILY TRIP 2026</div>
     <div class="hero-title">Da Nang<br>다낭 가족여행</div>
     <div class="hero-sub">2026. 06. 21 — 06. 26</div>
