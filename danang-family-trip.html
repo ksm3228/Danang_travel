@@ -144,6 +144,15 @@ body{font-family:'Noto Sans KR',sans-serif;background:#f8fafc;color:var(--text);
 .img-upload-slot input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;}
 .img-upload-slot .del-img{position:absolute;top:4px;right:4px;background:rgba(0,0,0,.5);color:#fff;border:none;border-radius:50%;width:20px;height:20px;font-size:12px;cursor:pointer;display:none;align-items:center;justify-content:center;}
 .img-upload-slot.has-img .del-img{display:flex;}
+
+.card.meal-highlight {
+  border-left: 4px solid #f59e0b;
+}
+.card.meal-highlight .card-header {
+  background: #fffbeb;
+}
+
+  
 </style>
 
 <script type="module">
@@ -272,7 +281,7 @@ window.doSignOut = () => signOut(auth);
 
 <div class="hero">
   <div class="hero-content">
-    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v7.1</div>
+    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v7.2</div>
     <div class="hero-badge">✈️ &nbsp;FAMILY TRIP 2026</div>
     <div class="hero-title">Da Nang<br>다낭 가족여행</div>
     <div class="hero-sub">2026. 06. 21 — 06. 26</div>
@@ -937,6 +946,13 @@ function attachCardButtons(cardId){
       }
     }
   }
+
+  // 식사 하이라이트
+  const mealKeywords = ['조식', '중식', '석식', '아침식사', '점심식사', '저녁식사', '뷔페'];
+  const cardName = card.querySelector('.card-name')?.textContent || '';
+  const cardTip = card.dataset.tip || '';
+  const hasMeal = mealKeywords.some(k => cardName.includes(k) || cardTip.includes(k));
+  card.classList.toggle('meal-highlight', hasMeal);
 }
 
 document.addEventListener('DOMContentLoaded',()=>{
