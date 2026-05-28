@@ -732,7 +732,7 @@ window.doSignOut = () => signOut(auth);
   <div class="hero-stars"></div>
   <div class="hero-wave"></div>
   <div class="hero-content">
-    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v5.9</div>
+    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v6.0</div>
 <div class="hero-badge">✈️ &nbsp;FAMILY TRIP 2026</div>
     <div class="hero-title">Da Nang<br>다낭 가족여행</div>
     <div class="hero-sub">2026. 06. 21 — 06. 26</div>
@@ -1832,8 +1832,9 @@ window.doSignOut = () => signOut(auth);
       </select>
     </div>
     <div class="form-group">
-      <label>시간</label>
-      <input type="time" id="f_time">
+      <label>시간 (예: 09:30, 18:50)</label>
+      <input type="text" id="f_time" placeholder="예) 09:30" maxlength="5"
+        oninput="this.value=this.value.replace(/[^0-9:]/g,'')">
     </div>
   </div>
   <div class="form-group">
