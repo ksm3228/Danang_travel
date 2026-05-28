@@ -529,6 +529,32 @@ body {
 .edit-mode .btn-card-delete { display: flex; }
 
 .img-gallery { display: none; }  
+
+
+// ── 카드 전체 Firebase 저장 ──
+function saveCardsToFirebase() {
+  if (!window._fbReady) return;
+  const allCards = [];
+  document.querySelectorAll('.tab-content').forEach(tab => {
+    tab.querySelectorAll('.card').forEach(card => {
+      allCards.push({
+        id: card.id,
+        tab: tab.id,
+        time: card.dataset.time || '',
+        name: card.dataset.name || '',
+        icon: card.dataset.icon || '',
+        tag: card.dataset.tag || '',
+        tagStyle: card.dataset.tagStyle || '',
+        place: card.dataset.place || '',
+        cost: card.dataset.cost || '',
+        duration: card.dataset.duration || '',
+        tip: card.dataset.tip || '',
+      });
+    });
+  });
+  const { set: fbSet, ref: fbRef, db: fbDb } = window._fb;
+  fbSet(fbRef(fbDb, 'danang_cards'), allCards);
+}
   
 </style>
 
@@ -620,6 +646,26 @@ onAuthStateChanged(auth, (user) => {
       set(dbRef, deleted);
     };
 
+    // 저장된 카드 불러오기
+    window._fb = { set, ref, db };
+    window._fbReady = true;
+
+    const cardsRef = ref(db, 'danang_cards');
+    onValue(cardsRef, (snapshot) => {
+      const cards = snapshot.val();
+      if (!Array.isArray(cards)) return;
+      cards.forEach(c => {
+        if (!c.id.startsWith('uc')) return;
+        if (document.getElementById(c.id)) return;
+        const targetCards = document.querySelector('#' + c.tab + ' .cards');
+        if (!targetCards) return;
+        targetCards.insertAdjacentHTML('beforeend', buildCard(c.id, c));
+        setTimeout(() => attachCardButtons(c.id), 100);
+      });
+    }, { onlyOnce: true });
+
+    
+    
     onValue(dbRef, (snapshot) => {
       const deleted = snapshot.val();
       if (!Array.isArray(deleted)) return;
@@ -653,7 +699,7 @@ window.doSignOut = () => signOut(auth);
   <div class="hero-stars"></div>
   <div class="hero-wave"></div>
   <div class="hero-content">
-    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v4.7</div>
+    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v4.8</div>
 <div class="hero-badge">✈️ &nbsp;FAMILY TRIP 2026</div>
     <div class="hero-title">Da Nang<br>다낭 가족여행</div>
     <div class="hero-sub">2026. 06. 21 — 06. 26</div>
@@ -2049,7 +2095,7 @@ function saveItem() {
       attachCardButtons(id);
     }, 300);
   }
-
+saveCardsToFirebase();
   closeSheet();
 }
 
