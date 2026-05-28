@@ -39,7 +39,7 @@ body {
 
 /* ── HERO ── */
 .hero {
-  background: linear-gradient(160deg, #0c1a2e 0%, #0e3a5e 45%, #0891b2 100%);
+  background: linear-gradient(180deg, #0c1a2e 0%, #0e3a5e 100%);
   padding: 24px 20px 20px;
   position: relative;
   overflow: hidden;
@@ -52,47 +52,24 @@ body {
   background: #f8fafc;
   clip-path: ellipse(60% 100% at 50% 100%);
 }
-.hero-stars {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-image:
-    radial-gradient(1px 1px at 15% 20%, rgba(255,255,255,.7) 0%, transparent 100%),
-    radial-gradient(1px 1px at 35% 45%, rgba(255,255,255,.5) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 60% 15%, rgba(255,255,255,.9) 0%, transparent 100%),
-    radial-gradient(1px 1px at 80% 30%, rgba(255,255,255,.6) 0%, transparent 100%),
-    radial-gradient(1px 1px at 90% 60%, rgba(255,255,255,.4) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 25% 70%, rgba(255,255,255,.5) 0%, transparent 100%),
-    radial-gradient(1px 1px at 70% 75%, rgba(255,255,255,.7) 0%, transparent 100%),
-    radial-gradient(1px 1px at 45% 85%, rgba(255,255,255,.3) 0%, transparent 100%);
-  pointer-events: none;
-}
-.hero-wave {
-  position: absolute;
-  bottom: 56px; left: 0; right: 0;
-  height: 30px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 30'%3E%3Cpath d='M0,15 C200,30 400,0 600,15 C800,30 1000,0 1200,15 L1200,30 L0,30 Z' fill='rgba(8,145,178,0.3)'/%3E%3C/svg%3E") repeat-x;
-  animation: wave 4s linear infinite;
-}
+.hero-stars { display: none; }
+.hero-wave  { display: none; }
 @keyframes wave { from { background-position: 0 0; } to { background-position: 1200px 0; } }
 
 .hero-content { position: relative; z-index: 1; text-align: center; }
 .hero-badge {
   ...
-  padding: 4px 12px; border-radius: 20px; margin-bottom: 10px;
-  letter-spacing: 1px;
+  color: #ffffff;
+  text-shadow: 0 1px 6px rgba(0,0,0,.5);
 }
 .hero-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 24px; font-weight: 700;
+  ...
   color: #ffffff;
-  line-height: 1.2;
-  margin-bottom: 6px;
-  text-shadow: 0 2px 20px rgba(0,0,0,.3);
+  text-shadow: 0 2px 12px rgba(0,0,0,.6), 0 1px 3px rgba(0,0,0,.8);
 }
 .hero-sub {
-  font-size: 12px; color: #93c5fd;
-  font-weight: 300; letter-spacing: 2px;
-  margin-bottom: 12px;
+  font-size: 12px; color: #e0f2fe;
+  text-shadow: 0 1px 6px rgba(0,0,0,.5);
 }
 .hero-pills {
   display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
@@ -515,7 +492,7 @@ body {
 <button class="tab-btn" onclick="showTab('day5',this)">6/25(목) Day5</button>
 <button class="tab-btn" onclick="showTab('day6',this)">6/26(금) 귀국</button>
   </div>
-  <span class="version-tag">v1.3</span>
+  <span class="version-tag">v2.0</span>
 </div>
 
 <!-- ═══════════════════════════════
