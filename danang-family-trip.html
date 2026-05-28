@@ -211,6 +211,7 @@ onAuthStateChanged(auth, (user) => {
       signOut(auth);
       alert('접근 권한이 없습니다: ' + user.email);
       return;
+    }
     overlay.style.display = 'none';
     const hero = document.querySelector('.hero-content');
     if (hero && !document.getElementById('userBadge')) {
