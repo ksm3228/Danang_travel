@@ -716,7 +716,7 @@ window.doSignOut = () => signOut(auth);
   <div class="hero-stars"></div>
   <div class="hero-wave"></div>
   <div class="hero-content">
-    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v5.4</div>
+    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v5.5</div>
 <div class="hero-badge">✈️ &nbsp;FAMILY TRIP 2026</div>
     <div class="hero-title">Da Nang<br>다낭 가족여행</div>
     <div class="hero-sub">2026. 06. 21 — 06. 26</div>
@@ -1977,7 +1977,7 @@ function buildCard(id, data) {
   <button class="btn-edit-action" onclick="moveCard('${id}',-1)">↑ 위로</button>
   <button class="btn-edit-action" onclick="moveCard('${id}',1)">↓ 아래로</button>
   <button class="btn-edit-action primary" onclick="openMoveDay('${id}')">📅 날짜이동</button>
-  <button class="btn-edit-action" onclick="openSheet('${id}')">✏️ 수정</button>
+  <button class="btn-edit-action" onclick="event.stopPropagation();openSheet('${id}')">✏️ 수정</button>
 </div>
       </div>
     </div>
@@ -2191,7 +2191,7 @@ function attachCardButtons(cardId) {
     editBtn.className = 'btn-always-edit';
     editBtn.style.cssText = 'margin:12px 16px 16px;width:calc(100% - 32px);padding:11px;border-radius:10px;border:1px solid var(--border);background:#f1f5f9;color:var(--text2);font-size:14px;font-weight:600;cursor:pointer;display:block;';
     editBtn.textContent = '✏️ 내용 수정';
-    editBtn.onclick = () => openSheet(id);
+    editBtn.onclick = (e) => { e.stopPropagation(); openSheet(id); };
     detail.appendChild(editBtn);
   }
 }
