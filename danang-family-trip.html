@@ -732,7 +732,7 @@ window.doSignOut = () => signOut(auth);
   <div class="hero-stars"></div>
   <div class="hero-wave"></div>
   <div class="hero-content">
-    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v5.8</div>
+    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v5.9</div>
 <div class="hero-badge">✈️ &nbsp;FAMILY TRIP 2026</div>
     <div class="hero-title">Da Nang<br>다낭 가족여행</div>
     <div class="hero-sub">2026. 06. 21 — 06. 26</div>
@@ -1817,13 +1817,40 @@ window.doSignOut = () => signOut(auth);
     <div class="sheet-handle"></div>
     <div class="sheet-title" id="sheetTitle">일정 추가</div>
     <div class="sheet-body">
-      <input type="hidden" id="f_editId">
-      
-      <div class="form-group">
-        <label>상세 내용</label>
-        <textarea id="f_tip" placeholder="장소 설명, 꿀팁, 주의사항 등 자유롭게 입력하세요"></textarea>
-      </div>
+  <input type="hidden" id="f_editId">
+  <div class="form-row">
+    <div class="form-group">
+      <label>날 (Day)</label>
+      <select id="f_day">
+        <option value="day0">출발전</option>
+        <option value="day1">Day 1 · 6/21</option>
+        <option value="day2">Day 2 · 6/22</option>
+        <option value="day3">Day 3 · 6/23</option>
+        <option value="day4">Day 4 · 6/24</option>
+        <option value="day5">Day 5 · 6/25</option>
+        <option value="day6">Day 6 · 6/26</option>
+      </select>
     </div>
+    <div class="form-group">
+      <label>시간</label>
+      <input type="time" id="f_time">
+    </div>
+  </div>
+  <div class="form-group">
+    <label>일정명 *</label>
+    <input type="text" id="f_name" placeholder="예) 미케비치 방문">
+  </div>
+  <input type="hidden" id="f_icon" value="🗺️">
+  <input type="hidden" id="f_tag" value="">
+  <input type="hidden" id="f_tag_style" value="tag-blue">
+  <input type="hidden" id="f_place" value="">
+  <input type="hidden" id="f_cost" value="">
+  <input type="hidden" id="f_duration" value="">
+  <div class="form-group">
+    <label>상세 내용 / 꿀팁</label>
+    <textarea id="f_tip" placeholder="장소 설명, 꿀팁, 주의사항 등 자유롭게 입력하세요"></textarea>
+  </div>
+</div>
     <div class="sheet-btns">
       <button class="btn-cancel" onclick="closeSheet()">취소</button>
       <button class="btn-save" onclick="saveItem()">저장</button>
