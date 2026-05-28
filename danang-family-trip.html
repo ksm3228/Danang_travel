@@ -701,7 +701,7 @@ window.doSignOut = () => signOut(auth);
   <div class="hero-stars"></div>
   <div class="hero-wave"></div>
   <div class="hero-content">
-    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v5.1</div>
+    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v5.2</div>
 <div class="hero-badge">✈️ &nbsp;FAMILY TRIP 2026</div>
     <div class="hero-title">Da Nang<br>다낭 가족여행</div>
     <div class="hero-sub">2026. 06. 21 — 06. 26</div>
@@ -1787,77 +1787,9 @@ window.doSignOut = () => signOut(auth);
     <div class="sheet-title" id="sheetTitle">일정 추가</div>
     <div class="sheet-body">
       <input type="hidden" id="f_editId">
-      <div class="form-row">
-        <div class="form-group">
-          <label>날 (Day)</label>
-          <select id="f_day">
-            <option value="day0">출발전</option>
-            <option value="day1">Day 1 · 6/21</option>
-            <option value="day2">Day 2 · 6/22</option>
-            <option value="day3">Day 3 · 6/23</option>
-            <option value="day4">Day 4 · 6/24</option>
-            <option value="day5">Day 5 · 6/25</option>
-            <option value="day6">Day 6 · 6/26</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>시간</label>
-          <input type="time" id="f_time">
-        </div>
-      </div>
+      
       <div class="form-group">
-        <label>일정명 *</label>
-        <input type="text" id="f_name" placeholder="예) 미케비치 방문">
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>구분 아이콘</label>
-          <select id="f_icon">
-            <option value="🗺️">🗺️ 관광</option>
-            <option value="🍜">🍜 식사</option>
-            <option value="🏨">🏨 숙소</option>
-            <option value="🏖">🏖 해변</option>
-            <option value="🛒">🛒 쇼핑</option>
-            <option value="✈️">✈️ 이동</option>
-            <option value="☕">☕ 카페</option>
-            <option value="💆">💆 마사지</option>
-            <option value="🚗">🚗 차량</option>
-            <option value="🏪">🏪 마트</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>태그</label>
-          <select id="f_tag_style">
-            <option value="tag-blue">파랑</option>
-            <option value="tag-green">초록</option>
-            <option value="tag-orange">주황</option>
-            <option value="tag-purple">보라</option>
-            <option value="tag-teal">청록</option>
-            <option value="tag-yellow">노랑</option>
-            <option value="tag-red">빨강</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>태그 텍스트</label>
-        <input type="text" id="f_tag" placeholder="예) 추천, 필수, 무료">
-      </div>
-      <div class="form-group">
-        <label>장소</label>
-        <input type="text" id="f_place" placeholder="예) My Khe Beach, Da Nang">
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>예상 비용</label>
-          <input type="text" id="f_cost" placeholder="예) 무료 / 100,000₫">
-        </div>
-        <div class="form-group">
-          <label>소요 시간</label>
-          <input type="text" id="f_duration" placeholder="예) 2시간">
-        </div>
-      </div>
-      <div class="form-group">
-        <label>상세 내용 / 꿀팁</label>
+        <label>상세 내용</label>
         <textarea id="f_tip" placeholder="장소 설명, 꿀팁, 주의사항 등 자유롭게 입력하세요"></textarea>
       </div>
     </div>
