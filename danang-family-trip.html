@@ -589,7 +589,7 @@ function closeMoveDay() {
   <div class="hero-stars"></div>
   <div class="hero-wave"></div>
   <div class="hero-content">
-    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v3.1</div>
+    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v3.2</div>
 <div class="hero-badge">✈️ &nbsp;FAMILY TRIP 2026</div>
     <div class="hero-title">Da Nang<br>다낭 가족여행</div>
     <div class="hero-sub">2026. 06. 21 — 06. 26</div>
@@ -1910,10 +1910,13 @@ function buildCard(id, data) {
       <div class="detail-body">
         ${placeHtml}${costHtml}${durHtml}
         ${tipHtml}
-        <div style="display:flex;gap:8px;margin-top:14px;">
-          <button onclick="openSheet('${id}')" style="flex:1;padding:10px;border-radius:10px;border:1px solid var(--border);background:#f1f5f9;color:var(--text2);font-size:14px;font-weight:600;cursor:pointer;">✏️ 수정</button>
-          <button class="btn-delete-card" style="flex:1;margin:0;" onclick="deleteCard('${id}')">🗑 삭제</button>
-        </div>
+        <div class="card-edit-bar" style="display:flex;">
+  <button class="btn-edit-action danger" onclick="deleteCard('${id}')">🗑 삭제</button>
+  <button class="btn-edit-action" onclick="moveCard('${id}',-1)">↑ 위로</button>
+  <button class="btn-edit-action" onclick="moveCard('${id}',1)">↓ 아래로</button>
+  <button class="btn-edit-action primary" onclick="openMoveDay('${id}')">📅 날짜이동</button>
+  <button class="btn-edit-action" onclick="openSheet('${id}')">✏️ 수정</button>
+</div>
       </div>
     </div>
   </div>`;
@@ -2029,6 +2032,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const chev = right.querySelector('.chevron');
     if (chev) right.insertBefore(moveBtns, chev);
     else right.appendChild(moveBtns);
+
+    // edit bar 삽입
+    if (!card.querySelector('.card-edit-bar')) {
+      const bar = document.createElement('div');
+      bar.className = 'card-edit-bar';
+      bar.innerHTML =
+        `<button class="btn-edit-action danger" onclick="deleteCard('${id}')">🗑 삭제</button>` +
+        `<button class="btn-edit-action" onclick="moveCard('${id}',-1)">↑ 위로</button>` +
+        `<button class="btn-edit-action" onclick="moveCard('${id}',1)">↓ 아래로</button>` +
+        `<button class="btn-edit-action primary" onclick="openMoveDay('${id}')">📅 날짜이동</button>`;
+      card.querySelector('.card-detail')?.appendChild(bar);
+    }
   });
 });
 </script>
