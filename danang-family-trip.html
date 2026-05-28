@@ -44,14 +44,7 @@ body {
   position: relative;
   overflow: hidden;
 }
-.hero::before {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 60px;
-  background: #f8fafc;
-  clip-path: ellipse(60% 100% at 50% 100%);
-}
+
 .hero-stars { display: none; }
 .hero-wave  { display: none; }
 @keyframes wave { from { background-position: 0 0; } to { background-position: 1200px 0; } }
@@ -483,7 +476,7 @@ body {
 .btn-edit-action.danger {background:#fff1f2;color:#dc2626;border-color:#fecaca;}
 .btn-edit-action.primary {background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe;}
 .edit-fab {
-  position:fixed; top:calc(60px + env(safe-area-inset-top)); right:60px;
+  position:fixed; top:calc(60px + env(safe-area-inset-top)); left:16px;
   width:36px; height:36px; border-radius:50%;
   background:#fff; color:var(--text2);
   border:1px solid var(--border);
@@ -538,7 +531,7 @@ body {
   <div class="hero-stars"></div>
   <div class="hero-wave"></div>
   <div class="hero-content">
-    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v3.4</div>
+    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v3.5</div>
 <div class="hero-badge">✈️ &nbsp;FAMILY TRIP 2026</div>
     <div class="hero-title">Da Nang<br>다낭 가족여행</div>
     <div class="hero-sub">2026. 06. 21 — 06. 26</div>
