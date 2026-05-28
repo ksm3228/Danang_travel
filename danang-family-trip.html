@@ -557,6 +557,21 @@ function saveCardsToFirebase() {
 }
 
 .detail-hero { display: none; }
+
+
+/* 오전 - 파란색 계열 */
+.card-time-col.am .card-time-hm { color: #0891b2; }
+.card-time-col.am .card-time-ampm { 
+  color: #fff; background: #0891b2; 
+  padding: 1px 5px; border-radius: 4px; 
+}
+
+/* 오후 - 주황색 계열 */
+.card-time-col.pm .card-time-hm { color: #d97706; }
+.card-time-col.pm .card-time-ampm { 
+  color: #fff; background: #d97706; 
+  padding: 1px 5px; border-radius: 4px; 
+}
       
 </style>
 
@@ -701,7 +716,7 @@ window.doSignOut = () => signOut(auth);
   <div class="hero-stars"></div>
   <div class="hero-wave"></div>
   <div class="hero-content">
-    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v5.3</div>
+    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v5.4</div>
 <div class="hero-badge">✈️ &nbsp;FAMILY TRIP 2026</div>
     <div class="hero-title">Da Nang<br>다낭 가족여행</div>
     <div class="hero-sub">2026. 06. 21 — 06. 26</div>
@@ -2074,6 +2089,13 @@ function highlightCard(cardId) {
 // ── INIT: add move buttons to all existing static cards ──
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.card').forEach(card => attachCardButtons(card.id));
+
+  // 오전/오후 색상 구분
+  document.querySelectorAll('.card-time-col').forEach(col => {
+    const ampm = col.querySelector('.card-time-ampm');
+    if (!ampm) return;
+    col.classList.add(ampm.textContent.trim() === '오전' ? 'am' : 'pm');
+  });
 });
 
 // ── EDIT MODE ──
