@@ -547,34 +547,34 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
-const dbRef = ref(db, 'danang_trip');
+const dbRef = ref(db, 'danang_deleted');
 
-// 저장
-window.saveToFirebase = function() {
-  const cards = [];
-  document.querySelectorAll('.card[id]').forEach(card => {
-    const tab = card.closest('.tab-content');
-    if (!tab) return;
-    cards.push({
-      id: card.id,
-      day: tab.id,
-      removed: false
-    });
-  });
-  // 삭제된 카드 id 저장
-  const deletedIds = JSON.parse(localStorage.getItem('danang_deleted') || '[]');
-  set(dbRef, { deletedIds });
+// 삭제 목록 Firebase에 저장
+window.persistDelete = function(cardId) {
+  const deleted = JSON.parse(localStorage.getItem('danang_deleted') || '[]');
+  if (!deleted.includes(cardId)) deleted.push(cardId);
+  localStorage.setItem('danang_deleted', JSON.stringify(deleted));
+  set(dbRef, deleted);
 };
 
-// 불러오기
+// 페이지 로드 시 Firebase에서 삭제 목록 불러와 카드 제거
 onValue(dbRef, (snapshot) => {
-  const data = snapshot.val();
-  if (!data) return;
-  const deletedIds = data.deletedIds || [];
-  deletedIds.forEach(id => {
-    const card = document.getElementById(id);
-    if (card) card.remove();
-  });
+  const deleted = snapshot.val();
+  if (!Array.isArray(deleted)) return;
+  localStorage.setItem('danang_deleted', JSON.stringify(deleted));
+
+  const apply = () => {
+    deleted.forEach(id => {
+      const card = document.getElementById(id);
+      if (card) card.remove();
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', apply);
+  } else {
+    apply();
+  }
 });
 </script>
   
@@ -588,7 +588,7 @@ onValue(dbRef, (snapshot) => {
   <div class="hero-stars"></div>
   <div class="hero-wave"></div>
   <div class="hero-content">
-    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v4.0</div>
+    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v4.1</div>
 <div class="hero-badge">✈️ &nbsp;FAMILY TRIP 2026</div>
     <div class="hero-title">Da Nang<br>다낭 가족여행</div>
     <div class="hero-sub">2026. 06. 21 — 06. 26</div>
@@ -711,8 +711,8 @@ onValue(dbRef, (snapshot) => {
       <div class="db-sub">김해공항 → 다낭국제공항</div>
     </div>
     <div class="db-emoji">✈️</div>
-  </div>
- 
+</div>
+  <div class="cards">
 
     <!-- 주차장 도착 -->
     <div class="card" id="c-d1-park">
@@ -910,8 +910,8 @@ onValue(dbRef, (snapshot) => {
       </div>
     </div>
 
-  </div>
-</div>
+  </div><!-- /cards -->
+</div><!-- /day1 -->
 
 <!-- ═══════════════════════════════
      DAY 2 — 6/22 (새벽 도착 + 낮)
@@ -2012,11 +2012,9 @@ function deleteCard(cardId) {
     card.style.transform = 'translateX(30px)';
     setTimeout(() => {
       card.remove();
-      // 삭제된 id 누적 저장
-      const deleted = JSON.parse(localStorage.getItem('danang_deleted') || '[]');
-      if (!deleted.includes(cardId)) deleted.push(cardId);
-      localStorage.setItem('danang_deleted', JSON.stringify(deleted));
-      window.saveToFirebase();
+      if (typeof window.persistDelete === 'function') {
+        window.persistDelete(cardId);
+      }
     }, 250);
     showToast('🗑 삭제되었습니다');
   }
