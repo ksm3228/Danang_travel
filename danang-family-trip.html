@@ -360,6 +360,9 @@ body {
 .tab-content.active { display: block; }
 
 /* ── FAB ── */
+
+  <button class="edit-fab" id="editFab" onclick="toggleEditMode()">편집</button>
+  
 .fab {
   position: fixed; top: calc(60px + env(safe-area-inset-top)); right: 16px;
   width: 56px; height: 56px; border-radius: 50%;
@@ -466,6 +469,114 @@ body {
   margin-bottom: 10px;
   margin-right: 4px;
 }
+
+.edit-mode .card-edit-bar {display:flex;}
+.card-edit-bar {
+  display:none; align-items:center; justify-content:space-between;
+  padding:8px 12px; background:#f8fafc;
+  border-top:1px solid var(--border); gap:6px;
+}
+.btn-edit-action {
+  flex:1; padding:8px 4px; border-radius:8px; border:1px solid var(--border);
+  background:#fff; color:var(--text2); font-size:12px; font-weight:600;
+  cursor:pointer; text-align:center;
+}
+.btn-edit-action.danger {background:#fff1f2;color:#dc2626;border-color:#fecaca;}
+.btn-edit-action.primary {background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe;}
+.edit-fab {
+  position:fixed; top:calc(60px + env(safe-area-inset-top)); right:60px;
+  width:36px; height:36px; border-radius:50%;
+  background:#fff; color:var(--text2);
+  border:1px solid var(--border);
+  font-size:13px; font-weight:700;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; z-index:40;
+  box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+.edit-fab.active {background:#0f172a;color:#fff;border-color:#0f172a;}
+
+<div class="move-backdrop" id="moveDaySheet" onclick="if(event.target===this)closeMoveDay()">
+  <div class="move-sheet">
+    <div class="move-sheet-title">📅 날짜 이동</div>
+    <div id="moveDayList"></div>
+    <button class="move-cancel" onclick="closeMoveDay()">취소</button>
+  </div>
+</div>
+  
+/* move modal */
+.move-backdrop {
+  position:fixed;inset:0;background:rgba(0,0,0,.5);
+  z-index:60;display:none;align-items:flex-end;
+}
+.move-backdrop.open {display:flex;}
+.move-sheet {
+  background:#fff;border-radius:20px 20px 0 0;width:100%;
+  padding-bottom:calc(24px + env(safe-area-inset-bottom));
+  animation:slideUp .22s cubic-bezier(.32,.72,0,1);
+}
+.move-sheet-title {
+  padding:14px 18px 12px;font-size:16px;font-weight:700;
+  border-bottom:1px solid var(--border);
+}
+.move-day-btn {
+  display:block;width:100%;padding:14px 20px;
+  text-align:left;font-size:15px;font-weight:500;
+  background:none;border:none;border-bottom:1px solid #f1f5f9;
+  cursor:pointer;color:var(--text);
+}
+.move-day-btn:active {background:#f8fafc;}
+.move-cancel {
+  display:block;width:100%;padding:14px;
+  text-align:center;font-size:15px;font-weight:600;
+  background:none;border:none;color:var(--text3);cursor:pointer;
+  margin-top:4px;
+}
+
+// ── EDIT MODE ──
+let editMode = false;
+function toggleEditMode() {
+  editMode = !editMode;
+  document.body.classList.toggle('edit-mode', editMode);
+  const fab = document.getElementById('editFab');
+  fab.textContent = editMode ? '완료' : '편집';
+  fab.classList.toggle('active', editMode);
+}
+
+// ── MOVE DAY ──
+let moveDayTargetId = null;
+const DAY_LABELS = {
+  day0:'출발전', day1:'6/21(일) Day1', day2:'6/22(월) Day2',
+  day3:'6/23(화) Day3', day4:'6/24(수) Day4',
+  day5:'6/25(목) Day5', day6:'6/26(금) 귀국'
+};
+
+function openMoveDay(cardId) {
+  moveDayTargetId = cardId;
+  const sheet = document.getElementById('moveDaySheet');
+  const list  = document.getElementById('moveDayList');
+  const card  = document.getElementById(cardId);
+  const currentTab = card.closest('.tab-content')?.id;
+  list.innerHTML = Object.entries(DAY_LABELS).map(([id,label]) =>
+    id === currentTab ? '' :
+    `<button class="move-day-btn" onclick="confirmMoveDay('${id}')">${label}</button>`
+  ).join('');
+  sheet.classList.add('open');
+}
+
+function confirmMoveDay(targetTabId) {
+  const card = document.getElementById(moveDayTargetId);
+  const targetCards = document.querySelector('#' + targetTabId + ' .cards');
+  if (card && targetCards) {
+    targetCards.appendChild(card);
+    showToast('📅 ' + DAY_LABELS[targetTabId] + '로 이동했습니다');
+  }
+  closeMoveDay();
+}
+
+function closeMoveDay() {
+  document.getElementById('moveDaySheet').classList.remove('open');
+  moveDayTargetId = null;
+}
   
 </style>
 </head>
@@ -478,7 +589,7 @@ body {
   <div class="hero-stars"></div>
   <div class="hero-wave"></div>
   <div class="hero-content">
-    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v3.0</div>
+    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v3.1</div>
 <div class="hero-badge">✈️ &nbsp;FAMILY TRIP 2026</div>
     <div class="hero-title">Da Nang<br>다낭 가족여행</div>
     <div class="hero-sub">2026. 06. 21 — 06. 26</div>
