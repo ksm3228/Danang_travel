@@ -861,7 +861,7 @@ window.doSignOut = () => signOut(auth);
     <!-- 주차장 도착 -->
     <div class="card" id="c-d1-park">
       <div class="card-header" onclick="toggle('c-d1-park')">
-        <div class="card-time-col"><div class="card-time-hm">06:30</div><div class="card-time-ampm">오후</div></div>
+        <div class="card-time-col"><div class="card-time-hm">18:30</div><div class="card-time-ampm">오후</div></div>
         <div class="card-meta">
           <div class="card-name">라운지 주차장 도착 & 입차</div>
           <div class="card-place">부산 강서구 공항로 791번길 52</div>
@@ -910,7 +910,7 @@ window.doSignOut = () => signOut(auth);
     <!-- 탑승 수속 -->
     <div class="card" id="c-d1-checkin">
       <div class="card-header" onclick="toggle('c-d1-checkin')">
-        <div class="card-time-col"><div class="card-time-hm">06:50</div><div class="card-time-ampm">오후</div></div>
+        <div class="card-time-col"><div class="card-time-hm">18:50</div><div class="card-time-ampm">오후</div></div>
         <div class="card-meta">
           <div class="card-name">탑승 수속 & 출국 심사</div>
           <div class="card-place">김해국제공항 국제선 터미널</div>
@@ -960,7 +960,7 @@ window.doSignOut = () => signOut(auth);
     <!-- 비행 -->
     <div class="card" id="c-d1-fly">
       <div class="card-header" onclick="toggle('c-d1-fly')">
-        <div class="card-time-col"><div class="card-time-hm">08:50</div><div class="card-time-ampm">오후</div></div>
+        <div class="card-time-col"><div class="card-time-hm">20:50</div><div class="card-time-ampm">오후</div></div>
         <div class="card-meta">
           <div class="card-name">김해 → 다낭 비행 (약 3시간)</div>
           <div class="card-place">김해국제공항 → 다낭국제공항 (DAD)</div>
@@ -1992,8 +1992,7 @@ function buildCard(id, data) {
         if(m){
           const h=parseInt(m[1]),mn=m[2];
           const ampm=h<12?'오전':'오후';
-          let dh=h>12?h-12:h; if(h===0)dh=12;
-          return `<div class="card-time-col"><div class="card-time-hm">${String(dh).padStart(2,'0')}:${mn}</div><div class="card-time-ampm">${ampm}</div></div>`;
+          return `<div class="card-time-col ${ampm==='오전'?'am':'pm'}"><div class="card-time-hm">${String(h).padStart(2,'0')}:${mn}</div><div class="card-time-ampm">${ampm}</div></div>`;
         }
         return `<div class="card-time-col"><div class="card-time-hm" style="font-size:11px">${first}</div></div>`;
       })(data.time)}
