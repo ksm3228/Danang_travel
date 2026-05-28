@@ -530,6 +530,54 @@ body {
   
   
 </style>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC9k6iGUcNObjxQGtlVOuP5_YSpErT9DtA",
+  authDomain: "ward-app-257c4.firebaseapp.com",
+  databaseURL: "https://ward-app-257c4-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "ward-app-257c4",
+  storageBucket: "ward-app-257c4.firebasestorage.app",
+  messagingSenderId: "261869081149",
+  appId: "1:261869081149:web:4d2f80c149ab77f3861054"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const dbRef = ref(db, 'danang_trip');
+
+// 저장
+window.saveToFirebase = function() {
+  const cards = [];
+  document.querySelectorAll('.card[id]').forEach(card => {
+    const tab = card.closest('.tab-content');
+    if (!tab) return;
+    cards.push({
+      id: card.id,
+      day: tab.id,
+      removed: false
+    });
+  });
+  // 삭제된 카드 id 저장
+  const deletedIds = JSON.parse(localStorage.getItem('danang_deleted') || '[]');
+  set(dbRef, { deletedIds });
+};
+
+// 불러오기
+onValue(dbRef, (snapshot) => {
+  const data = snapshot.val();
+  if (!data) return;
+  const deletedIds = data.deletedIds || [];
+  deletedIds.forEach(id => {
+    const card = document.getElementById(id);
+    if (card) card.remove();
+  });
+});
+</script>
+  
 </head>
 <body>
 
@@ -1962,7 +2010,14 @@ function deleteCard(cardId) {
     card.style.transition = 'opacity .25s, transform .25s';
     card.style.opacity = '0';
     card.style.transform = 'translateX(30px)';
-    setTimeout(() => card.remove(), 250);
+    setTimeout(() => {
+      card.remove();
+      // 삭제된 id 누적 저장
+      const deleted = JSON.parse(localStorage.getItem('danang_deleted') || '[]');
+      if (!deleted.includes(cardId)) deleted.push(cardId);
+      localStorage.setItem('danang_deleted', JSON.stringify(deleted));
+      window.saveToFirebase();
+    }, 250);
     showToast('🗑 삭제되었습니다');
   }
 }
