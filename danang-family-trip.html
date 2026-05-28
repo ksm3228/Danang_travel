@@ -653,7 +653,7 @@ window.doSignOut = () => signOut(auth);
   <div class="hero-stars"></div>
   <div class="hero-wave"></div>
   <div class="hero-content">
-    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v4.6</div>
+    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v4.7</div>
 <div class="hero-badge">✈️ &nbsp;FAMILY TRIP 2026</div>
     <div class="hero-title">Da Nang<br>다낭 가족여행</div>
     <div class="hero-sub">2026. 06. 21 — 06. 26</div>
@@ -2044,7 +2044,10 @@ function saveItem() {
     const tabIdx = tabOrder.indexOf(targetTabId);
     if (tabIdx >= 0 && tabBtns[tabIdx]) showTab(targetTabId, tabBtns[tabIdx]);
     showToast('✅ 일정이 추가되었습니다');
-    setTimeout(() => highlightCard(id), 300);
+    setTimeout(() => {
+      highlightCard(id);
+      attachCardButtons(id);
+    }, 300);
   }
 
   closeSheet();
@@ -2096,43 +2099,7 @@ function highlightCard(cardId) {
 
 // ── INIT: add move buttons to all existing static cards ──
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.card').forEach(card => {
-    const right = card.querySelector('.card-right');
-    if (!right) return;
-    if (right.querySelector('.card-move-btns')) return;
-    const id = card.id;
-    const moveBtns = document.createElement('div');
-    moveBtns.className = 'card-move-btns';
-    moveBtns.setAttribute('onclick', 'event.stopPropagation()');
-    moveBtns.innerHTML =
-      `<button class="btn-move-card" onclick="moveCard('${id}',-1)" title="위로">↑</button>` +
-      `<button class="btn-move-card" onclick="moveCard('${id}',1)" title="아래로">↓</button>`;
-    const chev = right.querySelector('.chevron');
-    if (chev) right.insertBefore(moveBtns, chev);
-    else right.appendChild(moveBtns);
-
-   if (!card.querySelector('.btn-card-delete')) {
-      const moveBtn = document.createElement('button');
-      moveBtn.className = 'btn-card-delete';
-      moveBtn.style.cssText = 'background:#eff6ff;border-color:#bfdbfe;color:#1d4ed8;';
-      moveBtn.innerHTML = '📅';
-      moveBtn.onclick = (e) => { e.stopPropagation(); openMoveDay(id); };
-
-      const delBtn = document.createElement('button');
-      delBtn.className = 'btn-card-delete';
-      delBtn.innerHTML = '✕';
-      delBtn.onclick = (e) => { e.stopPropagation(); deleteCard(id); };
-
-      const chev = right.querySelector('.chevron');
-      if (chev) {
-        right.insertBefore(delBtn, chev);
-        right.insertBefore(moveBtn, delBtn);
-      } else {
-        right.appendChild(moveBtn);
-        right.appendChild(delBtn);
-      }
-    }
-  });
+  document.querySelectorAll('.card').forEach(card => attachCardButtons(card.id));
 });
 
 // ── EDIT MODE ──
