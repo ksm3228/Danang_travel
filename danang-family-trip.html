@@ -361,7 +361,6 @@ body {
 
 /* ── FAB ── */
 
-  <button class="edit-fab" id="editFab" onclick="toggleEditMode()">편집</button>
   
 .fab {
   position: fixed; top: calc(60px + env(safe-area-inset-top)); right: 16px;
@@ -495,13 +494,7 @@ body {
 }
 .edit-fab.active {background:#0f172a;color:#fff;border-color:#0f172a;}
 
-<div class="move-backdrop" id="moveDaySheet" onclick="if(event.target===this)closeMoveDay()">
-  <div class="move-sheet">
-    <div class="move-sheet-title">📅 날짜 이동</div>
-    <div id="moveDayList"></div>
-    <button class="move-cancel" onclick="closeMoveDay()">취소</button>
-  </div>
-</div>
+
   
 /* move modal */
 .move-backdrop {
@@ -532,51 +525,7 @@ body {
   margin-top:4px;
 }
 
-// ── EDIT MODE ──
-let editMode = false;
-function toggleEditMode() {
-  editMode = !editMode;
-  document.body.classList.toggle('edit-mode', editMode);
-  const fab = document.getElementById('editFab');
-  fab.textContent = editMode ? '완료' : '편집';
-  fab.classList.toggle('active', editMode);
-}
 
-// ── MOVE DAY ──
-let moveDayTargetId = null;
-const DAY_LABELS = {
-  day0:'출발전', day1:'6/21(일) Day1', day2:'6/22(월) Day2',
-  day3:'6/23(화) Day3', day4:'6/24(수) Day4',
-  day5:'6/25(목) Day5', day6:'6/26(금) 귀국'
-};
-
-function openMoveDay(cardId) {
-  moveDayTargetId = cardId;
-  const sheet = document.getElementById('moveDaySheet');
-  const list  = document.getElementById('moveDayList');
-  const card  = document.getElementById(cardId);
-  const currentTab = card.closest('.tab-content')?.id;
-  list.innerHTML = Object.entries(DAY_LABELS).map(([id,label]) =>
-    id === currentTab ? '' :
-    `<button class="move-day-btn" onclick="confirmMoveDay('${id}')">${label}</button>`
-  ).join('');
-  sheet.classList.add('open');
-}
-
-function confirmMoveDay(targetTabId) {
-  const card = document.getElementById(moveDayTargetId);
-  const targetCards = document.querySelector('#' + targetTabId + ' .cards');
-  if (card && targetCards) {
-    targetCards.appendChild(card);
-    showToast('📅 ' + DAY_LABELS[targetTabId] + '로 이동했습니다');
-  }
-  closeMoveDay();
-}
-
-function closeMoveDay() {
-  document.getElementById('moveDaySheet').classList.remove('open');
-  moveDayTargetId = null;
-}
   
 </style>
 </head>
@@ -589,7 +538,7 @@ function closeMoveDay() {
   <div class="hero-stars"></div>
   <div class="hero-wave"></div>
   <div class="hero-content">
-    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v3.2</div>
+    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v3.3</div>
 <div class="hero-badge">✈️ &nbsp;FAMILY TRIP 2026</div>
     <div class="hero-title">Da Nang<br>다낭 가족여행</div>
     <div class="hero-sub">2026. 06. 21 — 06. 26</div>
@@ -1757,6 +1706,16 @@ function closeMoveDay() {
   </div>
 </div>
 
+<button class="edit-fab" id="editFab" onclick="toggleEditMode()">편집</button>
+
+<div class="move-backdrop" id="moveDaySheet" onclick="if(event.target===this)closeMoveDay()">
+  <div class="move-sheet">
+    <div class="move-sheet-title">📅 날짜 이동</div>
+    <div id="moveDayList"></div>
+    <button class="move-cancel" onclick="closeMoveDay()">취소</button>
+  </div>
+</div>
+  
 <div class="toast" id="toast"></div>
 
 <script>
@@ -2046,6 +2005,53 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+// ── EDIT MODE ──
+let editMode = false;
+function toggleEditMode() {
+  editMode = !editMode;
+  document.body.classList.toggle('edit-mode', editMode);
+  const fab = document.getElementById('editFab');
+  fab.textContent = editMode ? '완료' : '편집';
+  fab.classList.toggle('active', editMode);
+}
+
+// ── MOVE DAY ──
+let moveDayTargetId = null;
+const DAY_LABELS = {
+  day0:'출발전', day1:'6/21(일) Day1', day2:'6/22(월) Day2',
+  day3:'6/23(화) Day3', day4:'6/24(수) Day4',
+  day5:'6/25(목) Day5', day6:'6/26(금) 귀국'
+};
+
+function openMoveDay(cardId) {
+  moveDayTargetId = cardId;
+  const sheet = document.getElementById('moveDaySheet');
+  const list  = document.getElementById('moveDayList');
+  const card  = document.getElementById(cardId);
+  const currentTab = card.closest('.tab-content')?.id;
+  list.innerHTML = Object.entries(DAY_LABELS).map(([id,label]) =>
+    id === currentTab ? '' :
+    `<button class="move-day-btn" onclick="confirmMoveDay('${id}')">${label}</button>`
+  ).join('');
+  sheet.classList.add('open');
+}
+
+function confirmMoveDay(targetTabId) {
+  const card = document.getElementById(moveDayTargetId);
+  const targetCards = document.querySelector('#' + targetTabId + ' .cards');
+  if (card && targetCards) {
+    targetCards.appendChild(card);
+    showToast('📅 ' + DAY_LABELS[targetTabId] + '로 이동했습니다');
+  }
+  closeMoveDay();
+}
+
+function closeMoveDay() {
+  document.getElementById('moveDaySheet').classList.remove('open');
+  moveDayTargetId = null;
+}
+  
 </script>
 </body>
 </html>
