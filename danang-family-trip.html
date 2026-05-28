@@ -518,7 +518,16 @@ body {
   margin-top:4px;
 }
 
-
+.btn-card-delete {
+  display: none;
+  width: 28px; height: 28px; border-radius: 7px;
+  border: 1px solid #fecaca; background: #fff1f2;
+  color: #dc2626; font-size: 16px; font-weight: 700;
+  align-items: center; justify-content: center;
+  cursor: pointer; flex-shrink: 0;
+}
+.edit-mode .btn-card-delete { display: flex; }
+  
   
 </style>
 </head>
@@ -531,7 +540,7 @@ body {
   <div class="hero-stars"></div>
   <div class="hero-wave"></div>
   <div class="hero-content">
-    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v3.5</div>
+    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v3.6</div>
 <div class="hero-badge">✈️ &nbsp;FAMILY TRIP 2026</div>
     <div class="hero-title">Da Nang<br>다낭 가족여행</div>
     <div class="hero-sub">2026. 06. 21 — 06. 26</div>
@@ -1984,16 +1993,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (chev) right.insertBefore(moveBtns, chev);
     else right.appendChild(moveBtns);
 
-    // edit bar 삽입
-    if (!card.querySelector('.card-edit-bar')) {
-      const bar = document.createElement('div');
-      bar.className = 'card-edit-bar';
-      bar.innerHTML =
-        `<button class="btn-edit-action danger" onclick="deleteCard('${id}')">🗑 삭제</button>` +
-        `<button class="btn-edit-action" onclick="moveCard('${id}',-1)">↑ 위로</button>` +
-        `<button class="btn-edit-action" onclick="moveCard('${id}',1)">↓ 아래로</button>` +
-        `<button class="btn-edit-action primary" onclick="openMoveDay('${id}')">📅 날짜이동</button>`;
-      card.querySelector('.card-detail')?.appendChild(bar);
+   // 삭제 버튼 삽입
+    if (!card.querySelector('.btn-card-delete')) {
+      const delBtn = document.createElement('button');
+      delBtn.className = 'btn-card-delete';
+      delBtn.innerHTML = '✕';
+      delBtn.onclick = (e) => { e.stopPropagation(); deleteCard(id); };
+      const chev = right.querySelector('.chevron');
+      if (chev) right.insertBefore(delBtn, chev);
+      else right.appendChild(delBtn);
     }
   });
 });
@@ -2006,18 +2014,6 @@ function toggleEditMode() {
   const fab = document.getElementById('editFab');
   fab.textContent = editMode ? '완료' : '편집';
   fab.classList.toggle('active', editMode);
-
-  // 편집 모드 켜질 때 모든 card-detail 열기, 꺼질 때 닫기
-  document.querySelectorAll('.card-detail').forEach(detail => {
-    if (editMode) {
-      detail.classList.add('open');
-    } else {
-      detail.classList.remove('open');
-    }
-  });
-  document.querySelectorAll('.chevron').forEach(chev => {
-    chev.classList.toggle('open', editMode);
-  });
 }
 
 // ── MOVE DAY ──
