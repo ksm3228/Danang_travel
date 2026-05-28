@@ -701,7 +701,7 @@ window.doSignOut = () => signOut(auth);
   <div class="hero-stars"></div>
   <div class="hero-wave"></div>
   <div class="hero-content">
-    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v5.2</div>
+    <div style="position:absolute;top:10px;left:14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.5px;">v5.3</div>
 <div class="hero-badge">✈️ &nbsp;FAMILY TRIP 2026</div>
     <div class="hero-title">Da Nang<br>다낭 가족여행</div>
     <div class="hero-sub">2026. 06. 21 — 06. 26</div>
@@ -1953,13 +1953,7 @@ function buildCard(id, data) {
       </div>
     </div>
     <div class="card-detail" id="detail-${id}">
-      <div class="detail-hero" style="background:linear-gradient(135deg,#0c2a4a,#0891b2);height:140px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
-        <div style="font-size:56px;filter:drop-shadow(0 4px 16px rgba(0,0,0,.3))">${data.icon||'🗺️'}</div>
-        <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,.6),transparent);padding:10px 16px 8px;">
-          <div class="detail-hero-title">${data.name||'새 일정'}</div>
-          ${data.place?`<div class="detail-hero-sub">${data.place}</div>`:''}
-        </div>
-      </div>
+     
       <div class="detail-body">
         ${placeHtml}${costHtml}${durHtml}
         ${tipHtml}
