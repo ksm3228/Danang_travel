@@ -2083,8 +2083,8 @@ function buildCard(id, data) {
     data-place="${(data.place||'').replace(/"/g,'&quot;')}"
     data-cost="${(data.cost||'').replace(/"/g,'&quot;')}"
     data-duration="${(data.duration||'').replace(/"/g,'&quot;')}"
-    data-tip="${(data.tip||'').replace(/"/g,'&quot;').replace(/\n/g,'&#10;')}">
-    data-imgs='${(data.imgs||"[]")}'
+    data-tip="${(data.tip||'').replace(/"/g,'&quot;').replace(/\n/g,'&#10;')}"
+    data-imgs='${(data.imgs||"[]")}'>
     <div class="card-header" onclick="toggle('${id}')">
       ${(function(t){
         if(!t) return '<div class="card-time-col"><div class="card-time-empty">—</div></div>';
@@ -2384,6 +2384,7 @@ function saveCardsToFirebase() {
         cost: card.dataset.cost || '',
         duration: card.dataset.duration || '',
         tip: card.dataset.tip || '',
+        imgs: card.dataset.imgs || '[]',
       });
     });
   });
