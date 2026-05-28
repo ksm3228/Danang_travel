@@ -2135,9 +2135,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 오전/오후 색상 구분
   document.querySelectorAll('.card-time-col').forEach(col => {
+    const hm = col.querySelector('.card-time-hm');
     const ampm = col.querySelector('.card-time-ampm');
-    if (!ampm) return;
-    col.classList.add(ampm.textContent.trim() === '오전' ? 'am' : 'pm');
+    if (!hm || !ampm) return;
+    const h = parseInt(hm.textContent);
+    if (!isNaN(h)) {
+      col.classList.add(h < 12 ? 'am' : 'pm');
+      ampm.textContent = h < 12 ? '오전' : '오후';
+    } else {
+      col.classList.add(ampm.textContent.trim() === '오전' ? 'am' : 'pm');
+    }
   });
 });
 
