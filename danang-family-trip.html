@@ -467,6 +467,20 @@ body {
   transition: box-shadow .3s;
 }
 
+.version-tag {
+  flex-shrink: 0;
+  font-size: 11px; font-weight: 600;
+  color: var(--text3);
+  padding: 4px 10px;
+  background: #f1f5f9;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+  align-self: center;
+  margin-bottom: 10px;
+  margin-right: 4px;
+}
+  
 </style>
 </head>
 <body>
@@ -494,13 +508,14 @@ body {
 <div class="tab-bar">
   <div class="tab-scroll">
     <button class="tab-btn active" onclick="showTab('day0',this)">출발전</button>
-    <button class="tab-btn" onclick="showTab('day1',this)">6/21 Day1</button>
-    <button class="tab-btn" onclick="showTab('day2',this)">6/22 Day2</button>
-    <button class="tab-btn" onclick="showTab('day3',this)">6/23 Day3</button>
-    <button class="tab-btn" onclick="showTab('day4',this)">6/24 Day4</button>
-    <button class="tab-btn" onclick="showTab('day5',this)">6/25 Day5</button>
-    <button class="tab-btn" onclick="showTab('day6',this)">6/26 귀국</button>
+<button class="tab-btn" onclick="showTab('day1',this)">6/21(일) Day1</button>
+<button class="tab-btn" onclick="showTab('day2',this)">6/22(월) Day2</button>
+<button class="tab-btn" onclick="showTab('day3',this)">6/23(화) Day3</button>
+<button class="tab-btn" onclick="showTab('day4',this)">6/24(수) Day4</button>
+<button class="tab-btn" onclick="showTab('day5',this)">6/25(목) Day5</button>
+<button class="tab-btn" onclick="showTab('day6',this)">6/26(금) 귀국</button>
   </div>
+  <span class="version-tag">v1.1</span>
 </div>
 
 <!-- ═══════════════════════════════
