@@ -152,6 +152,8 @@ body{font-family:'Noto Sans KR',sans-serif;background:#f8fafc;color:var(--text);
   background: #fffbeb;
 }
 
+.cards-loading .cards { opacity: 0; }
+.cards-loading .day-banner { opacity: 0; }
   
 </style>
 
@@ -256,6 +258,7 @@ onAuthStateChanged(auth, (user) => {
           container.appendChild(el);
         });
       });
+      document.body.classList.remove('cards-loading');
     }, { onlyOnce: true });
 
     onValue(dbRef, (snapshot) => {
@@ -277,7 +280,7 @@ onAuthStateChanged(auth, (user) => {
 window.doSignOut = () => signOut(auth);
 </script>
 </head>
-<body>
+<body class="cards-loading">
 <div class="progress-bar" id="progressBar"></div>
 
 <div class="hero">
